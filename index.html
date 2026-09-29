@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>BTG @ PKNU — Brain Theory Group</title>
+<link rel="icon" href="assets/btg-logo.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* ---- Home-specific ---- */
+  .hero { padding: 80px 48px 72px; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: center; }
+  .hero-eyebrow { font-family: var(--font-mono); font-size: 12px; color: var(--btg-navy); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  html[data-lang="ko"] .hero-eyebrow { font-family: var(--font-body); font-weight: 600; letter-spacing: 0.04em; text-transform: none; font-size: 13px; }
+  .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--btg-navy); }
+  .hero-title { font-family: var(--font-display); font-size: 68px; line-height: 1.04; letter-spacing: -0.025em; font-weight: 600; color: var(--fg-1); margin: 0 0 28px; }
+  html[data-lang="ko"] .hero-title { font-size: 60px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
+  .hero-title em { font-style: italic; color: var(--btg-navy); font-weight: 500; }
+  html[data-lang="ko"] .hero-title em { font-style: normal; font-weight: 700; }
+  .hero-lead { font-family: var(--font-body); font-size: 18px; line-height: 1.65; color: var(--ink-soft); max-width: 520px; margin: 0 0 36px; }
+
+  /* Hero figure — digital brain */
+  .hero-figure { position: relative; margin: 0; }
+  .hero-figure img { width: 100%; height: auto; display: block; border-radius: var(--r-lg); border: 1px solid var(--border); background: var(--ink); }
+  .hero-figure-cap { position: absolute; left: 14px; bottom: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(92% 0.01 250); background: oklch(18% 0.02 260 / 0.62); backdrop-filter: blur(6px); padding: 5px 9px; border-radius: var(--r-sm); pointer-events: none; }
+  html[data-lang="ko"] .hero-figure-cap { font-family: var(--font-body); font-weight: 500; text-transform: none; letter-spacing: 0.02em; font-size: 11px; }
+
+  /* Research pillars */
+  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .pillar { padding: 32px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); transition: border-color var(--dur-fast) var(--ease); cursor: pointer; }
+  .pillar:hover { border-color: var(--btg-navy); }
+  .pillar-num { font-family: var(--font-mono); font-size: 11px; color: var(--neural-magenta); font-weight: 500; letter-spacing: 0.08em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  html[data-lang="ko"] .pillar-num { font-family: var(--font-body); font-weight: 600; letter-spacing: 0.04em; }
+  .pillar-num::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .pillar-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; line-height: 1.3; margin: 0 0 12px; color: var(--fg-1); }
+  html[data-lang="ko"] .pillar-title { font-weight: 700; }
+  .pillar-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.65; color: var(--fg-2); margin: 0 0 20px; }
+  .pillar-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pillar-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; border: 1px solid var(--border-strong); color: var(--fg-2); }
+
+  /* Publications strip */
+  .pubs { display: flex; flex-direction: column; }
+  .pub { display: grid; grid-template-columns: 80px 1fr auto; gap: 32px; padding: 24px 0; border-top: 1px solid var(--border); align-items: baseline; }
+  .pub:last-child { border-bottom: 1px solid var(--border); }
+  .pub-year { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--btg-navy); }
+  .pub-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; line-height: 1.4; color: var(--fg-1); margin: 0 0 6px; }
+  html[data-lang="ko"] .pub-title { font-weight: 700; }
+  .pub-authors { font-family: var(--font-body); font-size: 13px; color: var(--fg-2); }
+  .pub-authors b { color: var(--fg-1); font-weight: 600; }
+  .pub-venue { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.08em; text-align: right; white-space: nowrap; }
+
+  .view-all { font-family: var(--font-body); font-size: 14px; color: var(--fg-1); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--border-strong); }
+  .view-all:hover { text-decoration-color: var(--neural-magenta); }
+</style>
+</head>
+<body data-screen-label="01 Home">
+
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="assets/btg-logo.png" class="brand-logo" alt="BTG logo">
+    <div>
+      <div class="brand-txt-1">BTG</div>
+      <div class="brand-txt-2" data-en="Brain Theory Group · PKNU" data-ko="뇌 이론 연구실 · 부경대">Brain Theory Group · PKNU</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" class="active" data-en="Home" data-ko="홈">Home</a>
+      <a href="Research.html" data-en="Research" data-ko="연구">Research</a>
+      <a href="Publications.html" data-en="Publications" data-ko="논문">Publications</a>
+      <a href="People.html" data-en="People" data-ko="구성원">People</a>
+      <a href="Teaching.html" data-en="Teaching" data-ko="강의">Teaching</a>
+      <a href="Contact.html" data-en="Contact" data-ko="연락처">Contact</a>
+    </div>
+    <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+      <span data-chip="en">EN</span>
+      <span data-chip="ko">KO</span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow" data-en="Computational Brain Science · Network Science · AI" data-ko="계산뇌과학 · 네트워크 과학 · 인공지능">Computational Brain Science · Network Science · AI</div>
+    <h1 class="hero-title"
+        data-en='Revealing the <em>principles</em> of brain function through computational theory.'
+        data-ko='계산 이론으로 밝히는 <em>뇌 기능</em>의 근본 원리.'>
+      Revealing the <em>principles</em> of brain function through computational theory.
+    </h1>
+    <p class="hero-lead"
+       data-en='Brain Theory Group (BTG) at Pukyong National University, led by <b>Prof. Jiyoung Kang</b>, develops multiscale and multimodal models of neural dynamics — from single-neuron biophysics to whole-brain effective connectivity.'
+       data-ko='부경대학교 <b>강지영 교수</b>가 이끄는 뇌 이론 연구실(Brain Theory Group)은 단일 뉴런의 생물물리에서 전뇌 유효 연결성에 이르기까지, 신경 동역학의 다중스케일·다중모달 모델을 개발합니다.'>
+      Brain Theory Group (BTG) at Pukyong National University, led by <b>Prof. Jiyoung Kang</b>, develops multiscale and multimodal models of neural dynamics — from single-neuron biophysics to whole-brain effective connectivity.
+    </p>
+    
+  </div>
+
+  <figure class="hero-figure">
+      <img src="assets/digital-brain.jpg"
+           alt="Digital brain — a luminous brain rendered as circuitry, with neural signal paths"
+           width="1200" height="900" loading="eager" decoding="async">
+      <figcaption class="hero-figure-cap">
+        <span data-en="Digital brain · network-level signal flow"
+              data-ko="디지털 뇌 · 네트워크 수준의 신호 흐름">Digital brain · network-level signal flow</span>
+      </figcaption>
+    </figure>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow" data-en="Research · 04 pillars" data-ko="연구 · 4대 축">Research · 04 pillars</div>
+      <h2 class="section-title" data-en="What we investigate" data-ko="우리가 탐구하는 것">What we investigate</h2>
+    </div>
+    <p class="section-sub"
+       data-en="Our work bridges biophysical simulation, information theory, and machine learning to describe brain state dynamics at multiple scales."
+       data-ko="생물물리 시뮬레이션, 정보 이론, 기계학습을 연결하여 다중 스케일의 뇌 상태 동역학을 설명합니다.">
+      Our work bridges biophysical simulation, information theory, and machine learning to describe brain state dynamics at multiple scales.
+    </p>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num" data-en="01 &nbsp;·&nbsp; Brain dynamics" data-ko="01 &nbsp;·&nbsp; 뇌 동역학">01 &nbsp;·&nbsp; Brain dynamics</div>
+      <h3 class="pillar-title"
+          data-en="Multiscale &amp; multimodal brain dynamics models"
+          data-ko="다중스케일·다중모달 뇌 동역학 모델">
+        Multiscale &amp; multimodal brain dynamics models
+      </h3>
+      <p class="pillar-desc"
+         data-en="Computational models that explain electrophysiology, neuroimaging, genetic, and behavioral data within a shared dynamical framework."
+         data-ko="전기생리학, 신경영상, 유전 정보, 행동 데이터를 하나의 동역학적 틀 안에서 설명하는 계산 모델을 개발합니다.">
+        Computational models that explain electrophysiology, neuroimaging, genetic, and behavioral data within a shared dynamical framework.
+      </p>
+      <div class="pillar-tags"><span class="pillar-tag">DCM</span><span class="pillar-tag">LIF</span><span class="pillar-tag">Thalamo-cortical</span></div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num" data-en="02 &nbsp;·&nbsp; Plasticity" data-ko="02 &nbsp;·&nbsp; 가소성">02 &nbsp;·&nbsp; Plasticity</div>
+      <h3 class="pillar-title"
+          data-en="Biologically plausible plasticity for adaptive treatment"
+          data-ko="개인 맞춤 뇌 치료를 위한 생물학적 가소성 모델">
+        Biologically plausible plasticity for adaptive treatment
+      </h3>
+      <p class="pillar-desc"
+         data-en="Plasticity models designed to inform personalized, adaptive brain-treatment schemes — modulating activity toward healthy attractors."
+         data-ko="개인별 적응형 뇌 치료 전략을 설계하는 가소성 모델 — 뇌 활동을 건강한 상태로 유도합니다.">
+        Plasticity models designed to inform personalized, adaptive brain-treatment schemes — modulating activity toward healthy attractors.
+      </p>
+      <div class="pillar-tags"><span class="pillar-tag">Homeostatic</span><span class="pillar-tag">TMS</span><span class="pillar-tag">Control</span></div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num" data-en="03 &nbsp;·&nbsp; NeuroImage ML" data-ko="03 &nbsp;·&nbsp; 신경영상 · ML">03 &nbsp;·&nbsp; NeuroImage ML</div>
+      <h3 class="pillar-title"
+          data-en="Machine learning on neural &amp; behavioral data"
+          data-ko="신경·행동 데이터의 기계학습 분석">
+        Machine learning on neural &amp; behavioral data
+      </h3>
+      <p class="pillar-desc"
+         data-en="Pipelines for reproducible NeuroImage analysis: connectivity estimation, state decoding, and behavioral prediction from EEG/fMRI."
+         data-ko="재현 가능한 신경영상 분석 파이프라인 — EEG/fMRI로부터 연결성 추정, 상태 디코딩, 행동 예측을 수행합니다.">
+        Pipelines for reproducible NeuroImage analysis: connectivity estimation, state decoding, and behavioral prediction from EEG/fMRI.
+      </p>
+      <div class="pillar-tags"><span class="pillar-tag">EEG</span><span class="pillar-tag">fMRI</span><span class="pillar-tag">Behavior</span></div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-num" data-en="04 &nbsp;·&nbsp; Information &amp; AI" data-ko="04 &nbsp;·&nbsp; 정보이론 · AI">04 &nbsp;·&nbsp; Information &amp; AI</div>
+      <h3 class="pillar-title"
+          data-en="Information theory &amp; novel AI for the brain"
+          data-ko="뇌를 이해하기 위한 정보이론과 새로운 AI">
+        Information theory &amp; novel AI for the brain
+      </h3>
+      <p class="pillar-desc"
+         data-en="Energy-landscape analysis, pairwise maximum-entropy models, and new AI methods designed for interpreting neural systems."
+         data-ko="에너지 랜드스케이프 분석, 쌍별 최대 엔트로피 모델(pMEM), 신경계 해석을 위한 새로운 AI 기법을 연구합니다.">
+        Energy-landscape analysis, pairwise maximum-entropy models, and new AI methods designed for interpreting neural systems.
+      </p>
+      <div class="pillar-tags"><span class="pillar-tag">Energy landscape</span><span class="pillar-tag">pMEM</span><span class="pillar-tag">QAOA</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow" data-en="Publications · latest" data-ko="논문 · 최신">Publications · latest</div>
+      <h2 class="section-title" data-en="Recent work" data-ko="최근 발표 논문">Recent work</h2>
+    </div>
+    <a href="Publications.html" class="view-all"
+       data-en="View all publications →"
+       data-ko="전체 논문 보기 →">View all publications →</a>
+  </div>
+
+  <div class="pubs">
+    <article class="pub">
+      <div class="pub-year">2026</div>
+      <div>
+        <h4 class="pub-title"
+            data-en="Advances in neurodegenerative disease diagnosis: from conventional techniques to soft nanomaterial-enabled electrochemical neural implants"
+            data-ko="퇴행성 신경질환 진단의 진보: 전통적 기법에서 소프트 나노소재 기반 전기화학적 신경 임플란트까지">
+          Advances in neurodegenerative disease diagnosis: from conventional techniques to soft nanomaterial-enabled electrochemical neural implants
+        </h4>
+        <div class="pub-authors">D. Thirumalai, H. Son, D. Y. Kim, S. Choi, <b>J. Kang*</b>, H.-R. Lim*</div>
+      </div>
+      <div class="pub-venue">TrAC Trends<br>Anal. Chem.</div>
+    </article>
+
+    <article class="pub">
+      <div class="pub-year">2025</div>
+      <div>
+        <h4 class="pub-title"
+            data-en="Identification of CO-binding modes in the Cu<sub>B</sub> site of bovine cytochrome c oxidase by spatial mapping of binding energy"
+            data-ko="결합 에너지의 공간 매핑을 통한 소 심장 시토크롬 c 산화효소 Cu<sub>B</sub> 자리의 CO 결합 모드 규명">
+          Identification of CO-binding modes in the Cu<sub>B</sub> site of bovine cytochrome c oxidase by spatial mapping of binding energy
+        </h4>
+        <div class="pub-authors"><b>J. Kang*</b>, T. Matsuoka, M. Tateno</div>
+      </div>
+      <div class="pub-venue">FEBS J.<br>2025</div>
+    </article>
+
+    <article class="pub">
+      <div class="pub-year">2024</div>
+      <div>
+        <h4 class="pub-title"
+            data-en="Integration of Partially Observed Multimodal and Multiscale Neural Signals for Estimating a Neural Circuit Using Dynamic Causal Modeling"
+            data-ko="동적 인과 모델링을 이용한 부분 관측 다중모달·다중스케일 신경 신호 통합과 신경 회로 추정">
+          Integration of Partially Observed Multimodal and Multiscale Neural Signals for Estimating a Neural Circuit Using Dynamic Causal Modeling
+        </h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Hae-Jeong Park*</div>
+      </div>
+      <div class="pub-venue">PLoS Comp Biol<br>e1012655</div>
+    </article>
+
+    <article class="pub">
+      <div class="pub-year">2024</div>
+      <div>
+        <h4 class="pub-title"
+            data-en="Ensemble-based community detection for dynamic networks"
+            data-ko="동적 네트워크를 위한 앙상블 기반 커뮤니티 탐지">
+          Ensemble-based community detection for dynamic networks
+        </h4>
+        <div class="pub-authors"><b>Jiyoung Kang*</b></div>
+      </div>
+      <div class="pub-venue">J. Korean<br>Phys. Soc.</div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="foot-brand-wrap">
+        <img src="assets/btg-logo.png" class="foot-logo" alt="">
+        <div>
+          <h3 class="foot-brand">BTG</h3>
+          <div class="foot-brand-sub" data-en="Brain Theory Group · PKNU" data-ko="뇌 이론 연구실 · 부경대">Brain Theory Group · PKNU</div>
+        </div>
+      </div>
+      <p class="foot-addr"
+         data-en="Department of Scientific Computing<br>Pukyong National University<br>45 Yongso-ro, Nam-gu, Busan 48513<br>Republic of Korea"
+         data-ko="부산광역시 남구 용소로 45<br>부경대학교 자연과학대학<br>과학컴퓨팅학과 (48513)<br>대한민국">
+        Department of Scientific Computing<br>Pukyong National University<br>45 Yongso-ro, Nam-gu, Busan 48513<br>Republic of Korea
+      </p>
+    </div>
+    <div class="foot-col">
+      <h5 data-en="Contact" data-ko="연락처">Contact</h5>
+      <a href="#" data-email="braintheorygroup" data-email-domain="gmail.com" data-email-show></a>
+      <a href="tel:+82516294067">+82-51-629-4067</a>
+    </div>
+    <div class="foot-col">
+      <h5 data-en="Explore" data-ko="둘러보기">Explore</h5>
+      <a href="Research.html" data-en="Research" data-ko="연구">Research</a>
+      <a href="Publications.html" data-en="Publications" data-ko="논문">Publications</a>
+      <a href="People.html" data-en="People" data-ko="구성원">People</a>
+    </div>
+    <div class="foot-col">
+      <h5 data-en="Institutional" data-ko="소속 기관">Institutional</h5>
+      <a href="https://scicomp.pknu.ac.kr" target="_blank" data-en="Dept. Scientific Computing" data-ko="과학컴퓨팅학과">Dept. Scientific Computing</a>
+      <a href="https://www.pknu.ac.kr" target="_blank" data-en="Pukyong National University" data-ko="부경대학교">Pukyong National University</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span data-en="© 2026 Brain Theory Group · Jiyoung Kang" data-ko="© 2026 Brain Theory Group · 강지영">© 2026 Brain Theory Group · Jiyoung Kang</span>
+    <span data-en="Site v2.0 · design system 2026" data-ko="사이트 v2.0 · 디자인 시스템 2026">Site v2.0 · design system 2026</span>
+  </div>
+</footer>
+
+<script src="i18n.js?v=20260929"></script>
+</body>
+</html>

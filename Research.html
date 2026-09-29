@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Research — BTG @ PKNU</title>
+<link rel="icon" href="assets/btg-logo.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  .page-head-grid { max-width: 1240px; margin: 0 auto; padding: 80px 48px 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; }
+  .toc { border-left: 1px solid var(--border); padding-left: 24px; display: flex; flex-direction: column; gap: 4px; align-self: end; }
+  .toc-label { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px; }
+  html[data-lang="ko"] .toc-label { font-family: var(--font-body); font-weight: 500; text-transform: none; letter-spacing: 0.04em; font-size: 12px; }
+  .toc a { font-family: var(--font-body); font-size: 14px; color: var(--fg-1); text-decoration: none; padding: 6px 0; display: flex; align-items: baseline; gap: 12px; }
+  .toc a:hover { color: var(--btg-navy); }
+  .toc-num { font-family: var(--font-mono); font-size: 11px; color: var(--neural-magenta); }
+
+  .pillar-section { max-width: 1240px; margin: 0 auto; padding: 72px 48px; border-top: 1px solid var(--border); }
+  .pillar-head { display: grid; grid-template-columns: 120px 1fr; gap: 40px; margin-bottom: 40px; }
+  .pillar-idx { font-family: var(--font-display); font-size: 88px; font-weight: 700; color: var(--btg-navy); line-height: 0.9; letter-spacing: -0.03em; }
+  .pillar-t { font-family: var(--font-display); font-size: 42px; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 20px; line-height: 1.15; max-width: 720px; }
+  html[data-lang="ko"] .pillar-t { font-weight: 700; font-size: 38px; }
+  .pillar-lead { font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--ink-soft); max-width: 720px; margin: 0; }
+  .body-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; padding-left: 160px; }
+  .body-txt p { font-family: var(--font-body); font-size: 15px; line-height: 1.75; color: var(--fg-1); margin: 0 0 16px; }
+  .body-txt p:last-child { margin-bottom: 0; }
+  .method-list { border: 1px solid var(--border); border-radius: 8px; padding: 24px; align-self: start; }
+  .method-label { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+  html[data-lang="ko"] .method-label { font-family: var(--font-body); font-weight: 600; text-transform: none; letter-spacing: 0.04em; font-size: 12px; color: var(--fg-2); }
+  .method-row { display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--divider); font-family: var(--font-mono); font-size: 12px; gap: 12px; }
+  html[data-lang="ko"] .method-row { font-family: var(--font-body); font-size: 13px; }
+  .method-row:first-of-type { border-top: none; padding-top: 0; }
+  .method-row b { color: var(--fg-1); font-weight: 500; }
+  .method-row span { color: var(--fg-2); text-align: right; }
+
+  .figure { margin: 32px 0; padding: 32px; background: var(--paper-2); border-radius: 12px; border: 1px solid var(--border); text-align: center; }
+  .figure svg { max-width: 100%; height: auto; }
+  .figure-cap { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 16px; }
+  html[data-lang="ko"] .figure-cap { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 12px; }
+</style>
+</head>
+<body data-screen-label="02 Research">
+
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="assets/btg-logo.png" class="brand-logo" alt="BTG logo">
+    <div>
+      <div class="brand-txt-1">BTG</div>
+      <div class="brand-txt-2" data-en="Brain Theory Group · PKNU" data-ko="뇌 이론 연구실 · 부경대">Brain Theory Group · PKNU</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ko="홈">Home</a>
+      <a href="Research.html" class="active" data-en="Research" data-ko="연구">Research</a>
+      <a href="Publications.html" data-en="Publications" data-ko="논문">Publications</a>
+      <a href="People.html" data-en="People" data-ko="구성원">People</a>
+      <a href="Teaching.html" data-en="Teaching" data-ko="강의">Teaching</a>
+      <a href="Contact.html" data-en="Contact" data-ko="연락처">Contact</a>
+    </div>
+    <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+      <span data-chip="en">EN</span>
+      <span data-chip="ko">KO</span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head-grid">
+  <div>
+    <div class="page-eyebrow" data-en="Research · four ongoing pillars" data-ko="연구 · 진행 중인 4대 축">Research · four ongoing pillars</div>
+    <h1 class="page-title" data-en="Research" data-ko="연구">Research</h1>
+    <p class="page-lead"
+       data-en="We develop new computational and theoretical methods to reveal fundamental principles of brain function based on brain activity signals. Four ongoing directions — each anchored in real neuroimaging or electrophysiology data."
+       data-ko="뇌 활동 신호를 바탕으로 뇌 기능의 근본 원리를 밝히는 새로운 계산·이론적 방법을 개발합니다. 각 축은 실제 신경영상 또는 전기생리 데이터에 기반해 있습니다.">
+      We develop new computational and theoretical methods to reveal fundamental principles of brain function based on brain activity signals. Four ongoing directions — each anchored in real neuroimaging or electrophysiology data.
+    </p>
+  </div>
+  <nav class="toc">
+    <div class="toc-label" data-en="On this page" data-ko="이 페이지 목차">On this page</div>
+    <a href="#p1"><span class="toc-num">01</span><span data-en="Multiscale brain dynamics" data-ko="다중스케일 뇌 동역학">Multiscale brain dynamics</span></a>
+    <a href="#p2"><span class="toc-num">02</span><span data-en="Plasticity for treatment" data-ko="치료를 위한 가소성">Plasticity for treatment</span></a>
+    <a href="#p3"><span class="toc-num">03</span><span data-en="NeuroImage ML" data-ko="신경영상·기계학습">NeuroImage ML</span></a>
+    <a href="#p4"><span class="toc-num">04</span><span data-en="Information theory &amp; AI" data-ko="정보이론·AI">Information theory &amp; AI</span></a>
+  </nav>
+</header>
+
+<section id="p1" class="pillar-section">
+  <div class="pillar-head">
+    <div class="pillar-idx">01</div>
+    <div>
+      <h2 class="pillar-t"
+          data-en="Multiscale &amp; multimodal brain dynamics models"
+          data-ko="다중스케일·다중모달 뇌 동역학 모델">
+        Multiscale &amp; multimodal brain dynamics models
+      </h2>
+      <p class="pillar-lead"
+         data-en="Models that jointly explain electrophysiology, neuroimaging, genetic, and behavioral data — from single-neuron biophysics to whole-brain effective connectivity."
+         data-ko="단일 뉴런의 생물물리부터 전뇌 유효 연결성까지 — 전기생리, 신경영상, 유전, 행동 데이터를 함께 설명하는 모델을 만듭니다.">
+        Models that jointly explain electrophysiology, neuroimaging, genetic, and behavioral data — from single-neuron biophysics to whole-brain effective connectivity.
+      </p>
+    </div>
+  </div>
+
+  <div class="body-grid">
+    <div class="body-txt">
+      <p data-en="The brain operates across many time and length scales at once: ion-channel dynamics on the millisecond scale, hemodynamic responses on the second scale, and behavior on the minute scale. Our group builds models that bridge these scales explicitly, with data-constrained parameters."
+         data-ko="뇌는 여러 시공간 스케일에서 동시에 작동합니다. 이온 채널은 밀리초, 혈역학적 반응은 초, 행동은 분 단위로 나타납니다. 저희는 이러한 스케일들을 명시적으로 연결하는 모델을 만들고, 데이터로 파라미터를 제약합니다.">
+        The brain operates across many time and length scales at once: ion-channel dynamics on the millisecond scale, hemodynamic responses on the second scale, and behavior on the minute scale. Our group builds models that bridge these scales explicitly, with data-constrained parameters.
+      </p>
+      <p data-en="A central tool is <b>dynamic causal modeling (DCM)</b> extended to partially observed multimodal data. We have shown how metabolic, thalamo-cortical, and hierarchical DCM variants can be estimated from EEG and fMRI recorded during rest, disease, or pharmacological challenge — including clozapine-treated schizophrenia and pediatric epilepsy."
+         data-ko="핵심 도구는 <b>동적 인과 모델링(DCM)</b>이며, 부분 관측 다중모달 데이터로 확장하여 활용합니다. 대사·시상피질·계층적 DCM 변형을 휴식·질환·약물 조건의 EEG와 fMRI로부터 추정하는 방법을 제시해 왔으며, 클로자핀 처방 조현병 및 소아 뇌전증 사례에 적용해 왔습니다.">
+        A central tool is <b>dynamic causal modeling (DCM)</b> extended to partially observed multimodal data. We have shown how metabolic, thalamo-cortical, and hierarchical DCM variants can be estimated from EEG and fMRI recorded during rest, disease, or pharmacological challenge — including clozapine-treated schizophrenia and pediatric epilepsy.
+      </p>
+      <p data-en="Ongoing work extends these models to ketogenic modulation of pediatric epilepsy and to inferring absence-seizure mechanisms in childhood absence epilepsy through thalamo-cortical DCM."
+         data-ko="현재는 이 모델을 소아 뇌전증의 케톤 식이 조절 효과, 소아 결신 발작(absence seizure)의 시상피질 DCM 기반 기전 추론으로 확장하고 있습니다.">
+        Ongoing work extends these models to ketogenic modulation of pediatric epilepsy and to inferring absence-seizure mechanisms in childhood absence epilepsy through thalamo-cortical DCM.
+      </p>
+
+      <div class="figure">
+        <svg viewBox="0 0 480 220" fill="none" style="width:100%;max-width:480px;">
+          <ellipse cx="120" cy="60" rx="60" ry="24" fill="none" stroke="oklch(32% 0.11 255)" stroke-width="1.5"/>
+          <text x="120" y="64" font-family="JetBrains Mono" font-size="11" fill="oklch(32% 0.11 255)" text-anchor="middle">Cortex</text>
+          <ellipse cx="120" cy="160" rx="40" ry="16" fill="none" stroke="oklch(58% 0.22 340)" stroke-width="1.5"/>
+          <text x="120" y="164" font-family="JetBrains Mono" font-size="10" fill="oklch(58% 0.22 340)" text-anchor="middle">Thalamus</text>
+          <path d="M120 84 L120 144" stroke="oklch(45% 0.02 260)" stroke-width="1.2" marker-end="url(#arr)"/>
+          <path d="M130 144 L130 84" stroke="oklch(45% 0.02 260)" stroke-width="1.2" marker-end="url(#arr)"/>
+          <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="none" stroke="oklch(45% 0.02 260)" stroke-width="1"/></marker></defs>
+          <text x="240" y="30" font-family="JetBrains Mono" font-size="10" fill="oklch(45% 0.02 260)">→ EEG (ms)</text>
+          <polyline points="240,60 260,50 280,72 300,44 320,66 340,48 360,64" stroke="oklch(32% 0.11 255)" stroke-width="1.2" fill="none"/>
+          <polyline points="240,120 260,116 280,124 300,110 320,128 340,112 360,124" stroke="oklch(58% 0.22 340)" stroke-width="1.2" fill="none"/>
+          <text x="240" y="106" font-family="JetBrains Mono" font-size="10" fill="oklch(45% 0.02 260)">→ fMRI (s)</text>
+          <polyline points="240,180 260,178 280,182 300,176 320,184 340,178 360,182" stroke="oklch(45% 0.02 260)" stroke-width="1.2" fill="none"/>
+          <text x="240" y="164" font-family="JetBrains Mono" font-size="10" fill="oklch(45% 0.02 260)">→ Behavior</text>
+          <rect x="390" y="80" width="80" height="60" fill="none" stroke="oklch(18% 0.02 260)" stroke-width="1.5" rx="4"/>
+          <text x="430" y="106" font-family="Fraunces" font-size="14" font-weight="600" fill="oklch(18% 0.02 260)" text-anchor="middle">DCM</text>
+          <text x="430" y="122" font-family="JetBrains Mono" font-size="9" fill="oklch(45% 0.02 260)" text-anchor="middle">multimodal</text>
+        </svg>
+        <div class="figure-cap"
+             data-en="Fig. 01 · Multiscale DCM integrating EEG, fMRI, and behavior · placeholder"
+             data-ko="그림 01 · EEG·fMRI·행동을 통합하는 다중스케일 DCM · 예시">
+          Fig. 01 · Multiscale DCM integrating EEG, fMRI, and behavior · placeholder
+        </div>
+      </div>
+    </div>
+
+    <aside class="method-list">
+      <div class="method-label" data-en="Methods in use" data-ko="사용 기법">Methods in use</div>
+      <div class="method-row"><b>DCM</b><span data-en="multimodal, hierarchical" data-ko="다중모달·계층적">multimodal, hierarchical</span></div>
+      <div class="method-row"><b>LIF</b><span data-en="leaky integrate-and-fire" data-ko="누설 적분·발화 모델">leaky integrate-and-fire</span></div>
+      <div class="method-row"><b>Thalamo-cortical</b><span data-en="T-type, Na channels" data-ko="T형·Na 채널">T-type, Na channels</span></div>
+      <div class="method-row"><b>SPM8 / FieldTrip</b><span data-en="preprocessing" data-ko="전처리">preprocessing</span></div>
+      <div class="method-row"><b>SLURM HPC</b><span data-en="batch estimation" data-ko="배치 추정">batch estimation</span></div>
+    </aside>
+  </div>
+</section>
+
+<section id="p2" class="pillar-section">
+  <div class="pillar-head">
+    <div class="pillar-idx">02</div>
+    <div>
+      <h2 class="pillar-t"
+          data-en="Biologically plausible plasticity for adaptive treatment"
+          data-ko="개인 맞춤 뇌 치료를 위한 생물학적 가소성 모델">
+        Biologically plausible plasticity for adaptive treatment
+      </h2>
+      <p class="pillar-lead"
+         data-en="Activity-dependent and homeostatic plasticity models designed to inform personalized brain-treatment schemes — modulating activity toward healthy attractors."
+         data-ko="활동 의존적·항상성 가소성 모델로 개인 맞춤형 뇌 치료 전략을 설계합니다 — 뇌 활동을 건강한 어트랙터로 유도합니다.">
+        Activity-dependent and homeostatic plasticity models designed to inform personalized brain-treatment schemes — modulating activity toward healthy attractors.
+      </p>
+    </div>
+  </div>
+
+  <div class="body-grid">
+    <div class="body-txt">
+      <p data-en="We formulate optimal-control problems on neural systems endowed with realistic plasticity rules. In prior work, we described a computational framework for controlling the <i>self-restorative</i> brain based on free-energy and degeneracy principles, and a framework for optimal control of self-adjustive neural systems with activity-dependent and homeostatic plasticity."
+         data-ko="현실적인 가소성 규칙을 지닌 신경계 위에서 최적 제어 문제를 정식화합니다. 이전 연구에서는 자유 에너지와 축퇴성 원리에 기반한 <i>자가 복원</i> 뇌의 제어 계산 프레임워크, 그리고 활동 의존적·항상성 가소성을 지닌 자가 조율 신경계의 최적 제어 프레임워크를 제안했습니다.">
+        We formulate optimal-control problems on neural systems endowed with realistic plasticity rules. In prior work, we described a computational framework for controlling the <i>self-restorative</i> brain based on free-energy and degeneracy principles, and a framework for optimal control of self-adjustive neural systems with activity-dependent and homeostatic plasticity.
+      </p>
+      <p data-en="Current directions include TMS-induced brain-dynamics modeling and personalized grid-based whole-brain response modeling to characterize how repetitive single-pulse TMS reshapes networks."
+         data-ko="현재는 TMS 유도 뇌 동역학 모델링, 반복 단일 펄스 TMS가 네트워크를 어떻게 재구성하는지를 규명하기 위한 개인 맞춤 격자 기반 전뇌 반응 모델링을 진행하고 있습니다.">
+        Current directions include TMS-induced brain-dynamics modeling and personalized grid-based whole-brain response modeling to characterize how repetitive single-pulse TMS reshapes networks.
+      </p>
+    </div>
+    <aside class="method-list">
+      <div class="method-label" data-en="Methods in use" data-ko="사용 기법">Methods in use</div>
+      <div class="method-row"><b data-en="Free-energy" data-ko="자유 에너지">Free-energy</b><span data-en="control principle" data-ko="제어 원리">control principle</span></div>
+      <div class="method-row"><b>Hebbian / STDP</b><span data-en="plasticity rules" data-ko="가소성 규칙">plasticity rules</span></div>
+      <div class="method-row"><b data-en="Homeostatic" data-ko="항상성">Homeostatic</b><span data-en="synaptic scaling" data-ko="시냅스 스케일링">synaptic scaling</span></div>
+      <div class="method-row"><b>TMS</b><span data-en="induced dynamics" data-ko="유도 동역학">induced dynamics</span></div>
+    </aside>
+  </div>
+</section>
+
+<script src="i18n.js?v=20260929"></script>
+</body>
+</html>

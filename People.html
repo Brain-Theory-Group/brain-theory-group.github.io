@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>People — BTG @ PKNU</title>
+<link rel="icon" href="assets/btg-logo.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  .section-label { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+  html[data-lang="ko"] .section-label { font-family: var(--font-body); font-weight: 500; text-transform: none; letter-spacing: 0.04em; font-size: 13px; }
+
+  /* PI card */
+  .pi { display: grid; grid-template-columns: 240px 1fr; gap: 40px; padding-bottom: 40px; }
+  .pi-photo { width: 240px; height: 300px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--paper-2); display: flex; align-items: center; justify-content: center; }
+  .pi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+  .pi-name { font-family: var(--font-display); font-size: 38px; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 6px; line-height: 1.1; }
+  html[data-lang="ko"] .pi-name { font-weight: 700; }
+  .pi-role { font-family: var(--font-body); font-size: 15px; color: var(--fg-2); margin: 0 0 20px; }
+  .pi-bio { font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--fg-1); max-width: 560px; margin: 0 0 28px; }
+  .cv-list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .cv-row { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 13px; }
+  .cv-when { font-family: var(--font-mono); color: var(--fg-2); font-size: 12px; }
+  html[data-lang="ko"] .cv-when { font-family: var(--font-body); font-size: 13px; }
+  .cv-what { font-family: var(--font-body); color: var(--fg-1); line-height: 1.55; }
+  .cv-what b { font-weight: 600; }
+  .pi-motto { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--fg-2); margin: 24px 0 0; padding-left: 16px; border-left: 2px solid var(--neural-magenta); }
+  html[data-lang="ko"] .pi-motto { font-style: normal; font-weight: 500; }
+
+  /* Members grid */
+  .members-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .members-grid.four { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .member { padding: 28px 28px 24px; border: 1px solid var(--border); border-radius: 8px; transition: border-color var(--dur-fast) var(--ease); }
+  .member:hover { border-color: var(--btg-navy); }
+  .avatar { width: 88px; height: 88px; border-radius: 50%; overflow: hidden; background: var(--paper-2); border: 1px solid var(--border); display: block; margin-bottom: 16px; position: relative; transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+  .member:hover .avatar { border-color: var(--btg-navy); }
+  .m-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin: 0 0 4px; }
+  html[data-lang="ko"] .m-name { font-weight: 700; }
+  .m-role { font-family: var(--font-body); font-size: 13px; color: var(--fg-2); margin: 0 0 16px; }
+  .m-detail { font-family: var(--font-body); font-size: 12px; color: var(--fg-2); line-height: 1.5; padding: 6px 0; border-top: 1px dashed var(--border); }
+  .m-detail b { color: var(--fg-1); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-right: 8px; }
+  html[data-lang="ko"] .m-detail b { font-family: var(--font-body); font-size: 11px; text-transform: none; letter-spacing: 0.02em; font-weight: 600; }
+
+  /* Join */
+  .join { max-width: 1240px; margin: 40px auto 96px; padding: 48px; border: 1px solid var(--border); border-radius: 16px; background: var(--paper-2); display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: center; }
+  .join h3 { font-family: var(--font-display); font-size: 30px; font-weight: 600; margin: 0 0 12px; line-height: 1.25; }
+  html[data-lang="ko"] .join h3 { font-weight: 700; }
+  .join p { font-family: var(--font-body); font-size: 15px; color: var(--ink-soft); line-height: 1.65; margin: 0; max-width: 480px; }
+  .join-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--btg-navy); color: var(--fg-inv); text-decoration: none; font-family: var(--font-body); font-size: 15px; font-weight: 500; border-radius: 8px; transition: background var(--dur-fast) var(--ease); justify-self: end; }
+  .join-btn:hover { background: var(--btg-navy-hover); }
+</style>
+</head>
+<body data-screen-label="03 People">
+
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="assets/btg-logo.png" class="brand-logo" alt="BTG logo">
+    <div>
+      <div class="brand-txt-1">BTG</div>
+      <div class="brand-txt-2" data-en="Brain Theory Group · PKNU" data-ko="뇌 이론 연구실 · 부경대">Brain Theory Group · PKNU</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ko="홈">Home</a>
+      <a href="Research.html" data-en="Research" data-ko="연구">Research</a>
+      <a href="Publications.html" data-en="Publications" data-ko="논문">Publications</a>
+      <a href="People.html" class="active" data-en="People" data-ko="구성원">People</a>
+      <a href="Teaching.html" data-en="Teaching" data-ko="강의">Teaching</a>
+      <a href="Contact.html" data-en="Contact" data-ko="연락처">Contact</a>
+    </div>
+    <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+      <span data-chip="en">EN</span>
+      <span data-chip="ko">KO</span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="page-eyebrow" data-en="People · 05 members" data-ko="구성원 · 5명">People · 05 members</div>
+  <h1 class="page-title" data-en="People" data-ko="구성원">People</h1>
+  <p class="page-lead"
+     data-en="One PI, four students, one collective interest — asking how physical models of the brain can help us understand and eventually adjust its dynamics."
+     data-ko="지도교수 한 명, 학부·대학원생 네 명, 공통된 하나의 질문 — 뇌의 물리 모델이 신경 동역학을 이해하고 나아가 조율하는 데 어떻게 기여할 수 있는가.">
+    One PI, four students, one collective interest — asking how physical models of the brain can help us understand and eventually adjust its dynamics.
+  </p>
+</header>
+
+<section class="section">
+  <div class="section-label">
+    <span data-en="Principal investigator" data-ko="지도교수">Principal investigator</span>
+    <span data-en="PI · 01" data-ko="지도교수 · 01">PI · 01</span>
+  </div>
+
+  <div class="pi">
+    <div class="pi-photo"><img src="assets/pi-jkang-illustration.jpg" alt="Jiyoung Kang portrait illustration"></div>
+    <div>
+      <h2 class="pi-name" data-en="Jiyoung Kang" data-ko="강 지 영">Jiyoung Kang</h2>
+      <p class="pi-role"
+         data-en="Associate Professor · Dept. of Scientific Computing, Pukyong National University"
+         data-ko="부교수 · 부경대학교 과학컴퓨팅학과">
+        Associate Professor · Dept. of Scientific Computing, Pukyong National University
+      </p>
+      <p class="pi-bio"
+         data-en="Jiyoung Kang leads the Brain Theory Group at PKNU. Trained in theoretical physics at the University of Tsukuba, her work develops dynamic causal models, energy-landscape analyses, and neural-plasticity frameworks that connect biophysical simulation to human neuroimaging data."
+         data-ko="강지영 교수는 부경대학교 뇌 이론 연구실(BTG)을 이끕니다. 일본 츠쿠바대학교에서 이론물리학으로 박사 학위를 받은 후, 동적 인과 모델링, 에너지 랜드스케이프 분석, 신경 가소성 모델을 통해 생물물리 시뮬레이션과 인간 신경영상 데이터를 잇는 연구를 수행하고 있습니다.">
+        Jiyoung Kang leads the Brain Theory Group at PKNU. Trained in theoretical physics at the University of Tsukuba, her work develops dynamic causal models, energy-landscape analyses, and neural-plasticity frameworks that connect biophysical simulation to human neuroimaging data.
+      </p>
+
+      <ul class="cv-list">
+        <li class="cv-row">
+          <span class="cv-when" data-en="Mar 2026 – present" data-ko="2026.03 – 현재">Mar 2026 – present</span>
+          <span class="cv-what"
+                data-en="<b>Associate Professor</b>, Dept. of Scientific Computing, Pukyong National University · Busan, Republic of Korea"
+                data-ko="<b>부교수</b>, 부경대학교 과학컴퓨팅학과 · 부산, 대한민국"><b>Associate Professor</b>, Dept. of Scientific Computing, Pukyong National University · Busan, Republic of Korea</span>
+        </li>
+        <li class="cv-row">
+          <span class="cv-when" data-en="Sep 2021 – Feb 2026" data-ko="2021.09 – 2026.02">Sep 2021 – Feb 2026</span>
+          <span class="cv-what"
+                data-en="<b>Assistant Professor</b>, Dept. of Scientific Computing, Pukyong National University · Busan, Republic of Korea"
+                data-ko="<b>조교수</b>, 부경대학교 과학컴퓨팅학과 · 부산, 대한민국"><b>Assistant Professor</b>, Dept. of Scientific Computing, Pukyong National University · Busan, Republic of Korea</span>
+        </li>
+        <li class="cv-row">
+          <span class="cv-when" data-en="Sep 2017 – Aug 2021" data-ko="2017.09 – 2021.08">Sep 2017 – Aug 2021</span>
+          <span class="cv-what"
+                data-en="<b>Research Professor</b>, Yonsei University College of Medicine, Brain Systems and Brain Science Institute · Seoul, Republic of Korea"
+                data-ko="<b>연구교수</b>, 연세대학교 의과대학, 연세대학교 뇌시스템뇌과학 연구소 · 서울, 대한민국"><b>Research Professor</b>, Yonsei University College of Medicine, Brain Systems and Brain Science Institute · Seoul, Republic of Korea</span>
+        </li>
+        <li class="cv-row">
+          <span class="cv-when" data-en="Apr 2012 – Sep 2017" data-ko="2012.04 – 2017.09">Apr 2012 – Sep 2017</span>
+          <span class="cv-what"
+                data-en="<b>Project Assistant Professor</b>, Graduate School of Life Science, University of Hyogo · Japan"
+                data-ko="<b>프로젝트 조교수</b>, 효고현립대학교 생명과학연구과 · 일본"><b>Project Assistant Professor</b>, Graduate School of Life Science, University of Hyogo · Japan</span>
+        </li>
+        <li class="cv-row">
+          <span class="cv-when" data-en="2009 – 2012" data-ko="2009 – 2012">2009 – 2012</span>
+          <span class="cv-what"
+                data-en="<b>Ph.D., Physics</b> · University of Tsukuba, Japan (JSPS Research Fellowship, DC2)"
+                data-ko="<b>이학박사(물리학)</b> · 츠쿠바대학교, 일본 (JSPS 연구원 DC2)"><b>Ph.D., Physics</b> · University of Tsukuba, Japan (JSPS Research Fellowship, DC2)</span>
+        </li>
+      </ul>
+
+      <p class="pi-motto"
+         data-en='"Carpe diem — Übung macht den Meister."'
+         data-ko='"Carpe diem — 연습이 대가를 만든다(Übung macht den Meister)."'>
+        "Carpe diem — Übung macht den Meister."
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="section-label">
+    <span data-en="Students &amp; members" data-ko="학생 및 구성원">Students &amp; members</span>
+    <span data-en="Members · 04" data-ko="구성원 · 4명">Members · 04</span>
+  </div>
+
+  <div class="members-grid four">
+    <div class="member">
+      <div class="avatar"><img src="assets/avatar-ha.jpg" alt="Hyukjin An portrait illustration"></div>
+      <h4 class="m-name" data-en="Hyukjin An" data-ko="안 혁 진">Hyukjin An</h4>
+      <p class="m-role" data-en="BS · MS candidate" data-ko="학·석사 통합과정">BS · MS candidate</p>
+      <div class="m-detail">
+        <b data-en="Track" data-ko="소속">Track</b>
+        <span data-en="Dept. of Scientific Computing" data-ko="과학컴퓨팅학과">Dept. of Scientific Computing</span>
+      </div>
+      <div class="m-detail">
+        <b data-en="Interest" data-ko="관심분야">Interest</b>
+        <span data-en="Brain dynamics · LLM" data-ko="뇌 동역학 · LLM">Brain dynamics · LLM</span>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="avatar"><img src="assets/avatar-sl.jpg" alt="Sunho Lee portrait illustration"></div>
+      <h4 class="m-name" data-en="Sunho Lee" data-ko="이 선 호">Sunho Lee</h4>
+      <p class="m-role" data-en="BS candidate" data-ko="학사과정">BS candidate</p>
+      <div class="m-detail">
+        <b data-en="Track" data-ko="소속">Track</b>
+        <span data-en="Dept. of Scientific Computing" data-ko="과학컴퓨팅학과">Dept. of Scientific Computing</span>
+      </div>
+      <div class="m-detail">
+        <b data-en="Interest" data-ko="관심분야">Interest</b>
+        <span data-en="AI · Data analysis · Eye tracking · Simulator" data-ko="AI · 데이터 분석 · 아이 트래킹 · 시뮬레이터">AI · Data analysis · Eye tracking · Simulator</span>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="avatar"><img src="assets/avatar-hj.jpg" alt="Haerin Jang portrait illustration"></div>
+      <h4 class="m-name" data-en="Haerin Jang" data-ko="장 해 린">Haerin Jang</h4>
+      <p class="m-role" data-en="BS candidate" data-ko="학사과정">BS candidate</p>
+      <div class="m-detail">
+        <b data-en="Track" data-ko="소속">Track</b>
+        <span data-en="Dept. of Scientific Computing" data-ko="과학컴퓨팅학과">Dept. of Scientific Computing</span>
+      </div>
+      <div class="m-detail">
+        <b data-en="Interest" data-ko="관심분야">Interest</b>
+        <span data-en="LLM · RAG · PET · fMRI" data-ko="LLM · RAG · PET · fMRI">LLM · RAG · PET · fMRI</span>
+      </div>
+    </div>
+
+    <div class="member">
+      <div class="avatar"><img src="assets/avatar-sk.jpg" alt="Sihyun Kim portrait illustration"></div>
+      <h4 class="m-name" data-en="Sihyun Kim" data-ko="김 시 현">Sihyun Kim</h4>
+      <p class="m-role" data-en="BS candidate" data-ko="학사과정">BS candidate</p>
+      <div class="m-detail">
+        <b data-en="Track" data-ko="소속">Track</b>
+        <span data-en="Dept. of Scientific Computing" data-ko="과학컴퓨팅학과">Dept. of Scientific Computing</span>
+      </div>
+      <div class="m-detail">
+        <b data-en="Interest" data-ko="관심분야">Interest</b>
+        <span data-en="Deep Learning · Brain stimulation" data-ko="딥러닝 · 뇌 자극">Deep Learning · Brain stimulation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="join">
+  <div>
+    <h3 data-en="We are hiring — undergraduate, graduate, and post-doc."
+        data-ko="함께할 학부생·대학원생·박사후연구원을 모집합니다.">
+      We are hiring — undergraduate, graduate, and post-doc.
+    </h3>
+    <p data-en="If any of the research pillars resonate with you, please write. We work across theoretical neuroscience, computational modeling, and neuroimaging analysis."
+       data-ko="연구 주제 중 마음이 끌리는 것이 있다면 편하게 연락 주세요. 이론 신경과학, 계산 모델링, 신경영상 분석 전반을 다룹니다.">
+      If any of the research pillars resonate with you, please write. We work across theoretical neuroscience, computational modeling, and neuroimaging analysis.
+    </p>
+  </div>
+  <a  class="join-btn" data-en="Write to us →" data-ko="문의하기 →" href="#" data-email="braintheorygroup" data-email-domain="gmail.com">Write to us →</a>
+</section>
+
+<script src="i18n.js?v=20260929"></script>
+</body>
+</html>

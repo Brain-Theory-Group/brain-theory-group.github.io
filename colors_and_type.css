@@ -1,0 +1,270 @@
+/* ============================================================
+   BTG @ PKNU — Design System / Colors & Type
+   Brain Theory Group, Pukyong National University
+   ============================================================ */
+
+/* ---- Fonts (local) --------------------------------------- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/Inter-Variable.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/JetBrainsMono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/JetBrainsMono-500.woff2') format('woff2');
+}
+
+/* ---- Tokens ---------------------------------------------- */
+:root {
+  /* Font families */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Color — ground & ink */
+  --paper: oklch(98% 0.005 90);       /* warm off-white page */
+  --paper-2: oklch(96% 0.008 90);     /* subtle surface elevation */
+  --ink: oklch(18% 0.02 260);          /* deep near-black w/ navy hint */
+  --ink-soft: oklch(24% 0.03 260);
+
+  /* Color — brand */
+  --btg-navy: oklch(32% 0.11 255);     /* primary brand (PKNU-nod) */
+  --btg-navy-hover: oklch(28% 0.12 255);
+  --btg-navy-soft: oklch(90% 0.03 255);
+
+  /* Color — neural signal accents (data-vis inspired) */
+  --neural-magenta: oklch(58% 0.22 340);
+  --neural-cyan: oklch(70% 0.13 205);
+  --neural-amber: oklch(72% 0.14 70);
+  --neural-violet: oklch(52% 0.18 295);
+
+  /* Color — semantic foreground */
+  --fg-1: var(--ink);                                 /* primary text */
+  --fg-2: oklch(45% 0.02 260);                        /* secondary text (meta) */
+  --fg-3: oklch(62% 0.015 260);                       /* tertiary (captions, hint) */
+  --fg-inv: var(--paper);                             /* on-dark text */
+
+  /* Color — semantic background/surface */
+  --bg: var(--paper);
+  --surface: var(--paper);
+  --surface-2: var(--paper-2);
+  --surface-inv: var(--ink);
+
+  /* Color — line */
+  --border: oklch(88% 0.008 260);
+  --border-strong: oklch(78% 0.012 260);
+  --divider: oklch(92% 0.006 260);
+
+  /* Color — feedback (used sparingly) */
+  --success: oklch(58% 0.12 155);
+  --warning: oklch(72% 0.15 75);
+  --danger: oklch(58% 0.19 25);
+
+  /* Radii */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* Spacing — 4px baseline */
+  --s-0: 0;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* Type sizes (modular scale 1.25 anchored at 16px) */
+  --t-mono: 12px;
+  --t-xs: 13px;
+  --t-sm: 15px;
+  --t-body: 17px;
+  --t-lg: 20px;
+  --t-h4: 24px;
+  --t-h3: 32px;
+  --t-h2: 40px;
+  --t-h1: 56px;
+  --t-display: 88px;
+
+  /* Line-heights */
+  --lh-display: 1.02;
+  --lh-heading: 1.15;
+  --lh-body: 1.65;
+  --lh-tight: 1.25;
+
+  /* Weights */
+  --w-regular: 400;
+  --w-medium: 500;
+  --w-semibold: 600;
+  --w-bold: 700;
+
+  /* Letter-spacing */
+  --ls-display: -0.02em;
+  --ls-heading: -0.01em;
+  --ls-body: 0;
+  --ls-mono: 0;
+  --ls-caps: 0.08em;
+
+  /* Shadows — restrained */
+  --shadow-1: 0 1px 2px oklch(18% 0.02 260 / 0.06);
+  --shadow-2: 0 12px 32px -12px oklch(18% 0.02 260 / 0.16);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur: 240ms;
+  --dur-slow: 400ms;
+
+  /* Layout */
+  --max-w: 1120px;
+  --max-w-prose: 720px;
+
+  /* Focus ring */
+  --ring: 0 0 0 3px oklch(58% 0.22 340 / 0.24);
+}
+
+/* ---- Base ------------------------------------------------ */
+html, body {
+  background: var(--bg);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+* { box-sizing: border-box; }
+
+::selection { background: oklch(58% 0.22 340 / 0.22); color: var(--fg-1); }
+
+/* ---- Semantic type -------------------------------------- */
+.display, h1.display {
+  font-family: var(--font-display);
+  font-size: var(--t-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  font-weight: 600;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--t-h1);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  font-weight: 600;
+  margin: 0;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  font-weight: 600;
+  margin: 0;
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.005em;
+  font-weight: 600;
+  margin: 0;
+}
+
+h4, .h4 {
+  font-family: var(--font-body);
+  font-size: var(--t-h4);
+  line-height: var(--lh-tight);
+  font-weight: 600;
+  margin: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--fg-2);
+  font-weight: 500;
+}
+
+p, .p {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.meta, small {
+  font-size: var(--t-xs);
+  color: var(--fg-2);
+  line-height: 1.5;
+}
+
+.mono, code, kbd, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  letter-spacing: var(--ls-mono);
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-size: var(--t-h4);
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+a {
+  color: var(--fg-1);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-strong);
+  transition: text-decoration-color var(--dur-fast) var(--ease),
+              text-decoration-thickness var(--dur-fast) var(--ease);
+}
+a:hover {
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--neural-magenta);
+}
+
+/* ---- Utility --------------------------------------------- */
+.container { max-width: var(--max-w); margin-inline: auto; padding-inline: var(--s-5); }
+.prose { max-width: var(--max-w-prose); }
+.hairline { border: 1px solid var(--border); }
+.rule { height: 1px; background: var(--divider); border: 0; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}

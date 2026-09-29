@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Publications — BTG @ PKNU</title>
+<link rel="icon" href="assets/btg-logo.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* Publications page: English-only content. Nav / global chrome stays bilingual. */
+
+  /* Filter bar */
+  .filters { max-width: 1240px; margin: 0 auto; padding: 24px 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .filter-label { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); text-transform: uppercase; letter-spacing: 0.12em; margin-right: 8px; }
+  .chip { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; padding: 6px 12px; border-radius: 2px; border: 1px solid var(--border-strong); color: var(--fg-2); background: transparent; cursor: pointer; transition: all var(--dur-fast) var(--ease); }
+  .chip.active { background: var(--ink); color: var(--fg-inv); border-color: var(--ink); }
+  .chip:hover:not(.active) { border-color: var(--btg-navy); color: var(--btg-navy); }
+  .counter { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); }
+
+  .pub-list { max-width: 1240px; margin: 0 auto; padding: 32px 48px 40px; }
+  .year-block { margin-bottom: 40px; }
+  .year-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .year-num { font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.02em; color: var(--fg-1); line-height: 1; }
+  .year-count { font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); text-transform: uppercase; letter-spacing: 0.14em; }
+  .pub { display: grid; grid-template-columns: 40px 1fr 180px; gap: 28px; padding: 18px 0; border-top: 1px solid var(--divider); align-items: baseline; }
+  .pub:first-of-type { border-top: none; padding-top: 10px; }
+  .pub-idx { font-family: var(--font-mono); font-size: 12px; color: var(--fg-3); }
+  .pub-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; line-height: 1.4; margin: 0 0 6px; color: var(--fg-1); }
+  .pub-title a { text-decoration: none; color: inherit; }
+  .pub-title a:hover { color: var(--btg-navy); }
+  .pub-authors { font-family: var(--font-body); font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+  .pub-authors b { color: var(--fg-1); font-weight: 600; }
+  .pub-venue { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.06em; }
+  .pub-doi { font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-3); margin-top: 5px; }
+  .badge { display: inline-block; font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle; }
+  .badge-editors { background: oklch(58% 0.22 340 / 0.14); color: var(--neural-magenta); border: 1px solid oklch(58% 0.22 340 / 0.4); }
+  .badge-cover { background: oklch(72% 0.14 70 / 0.16); color: oklch(50% 0.14 70); border: 1px solid oklch(72% 0.14 70 / 0.5); }
+  .badge-review { background: oklch(65% 0.10 220 / 0.14); color: oklch(45% 0.10 220); border: 1px solid oklch(65% 0.10 220 / 0.4); }
+
+  /* Section divider (Books / Patents) */
+  .section-divider { max-width: 1240px; margin: 24px auto 0; padding: 40px 48px 8px; }
+  .section-eyebrow-lg { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 12px; }
+  .section-title-lg { font-family: var(--font-display); font-size: 40px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 6px; line-height: 1.1; }
+  .section-lead-lg { font-family: var(--font-body); font-size: 14px; color: var(--fg-2); max-width: 620px; margin: 0; line-height: 1.6; }
+
+  /* Book / patent list uses simpler two-column layout */
+  .simple-list { max-width: 1240px; margin: 0 auto; padding: 12px 48px 40px; }
+  .simple-item { display: grid; grid-template-columns: 40px 1fr; gap: 28px; padding: 18px 0; border-top: 1px solid var(--divider); align-items: baseline; }
+  .simple-item:first-of-type { border-top: none; }
+  .simple-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; line-height: 1.4; margin: 0 0 6px; color: var(--fg-1); }
+  .simple-meta { font-family: var(--font-body); font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+  .simple-meta b { color: var(--fg-1); font-weight: 600; }
+  .simple-doi { font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-3); margin-top: 5px; }
+</style>
+</head>
+<body data-screen-label="04 Publications">
+
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="assets/btg-logo.png" class="brand-logo" alt="BTG logo">
+    <div>
+      <div class="brand-txt-1">BTG</div>
+      <div class="brand-txt-2" data-en="Brain Theory Group · PKNU" data-ko="뇌 이론 연구실 · 부경대">Brain Theory Group · PKNU</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ko="홈">Home</a>
+      <a href="Research.html" data-en="Research" data-ko="연구">Research</a>
+      <a href="Publications.html" class="active" data-en="Publications" data-ko="논문">Publications</a>
+      <a href="People.html" data-en="People" data-ko="구성원">People</a>
+      <a href="Teaching.html" data-en="Teaching" data-ko="강의">Teaching</a>
+      <a href="Contact.html" data-en="Contact" data-ko="연락처">Contact</a>
+    </div>
+    <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+      <span data-chip="en">EN</span>
+      <span data-chip="ko">KO</span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="page-eyebrow">Publications · 34 journal articles · 4 book chapters · 2 patents</div>
+  <h1 class="page-title">Publications</h1>
+  <p class="page-lead">
+    Journal articles, book chapters, and patents from BTG and prior work.
+    Corresponding-author work by the PI is marked with an asterisk*; co-first-authorship is indicated with a plus+.
+  </p>
+</header>
+
+<div class="filters">
+  <span class="filter-label">Filter</span>
+  <button class="chip active">All</button>
+  <button class="chip">Journal</button>
+  <button class="chip">Book chapter</button>
+  <button class="chip">Patent</button>
+  <button class="chip">Editor's pick</button>
+  <span class="counter">Showing 40 of 40 · Sort: newest ↓</span>
+</div>
+
+<div class="pub-list">
+
+  <!-- =========================== 2026 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2026</span>
+      <span class="year-count">01 article</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">01</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1016/j.trac.2026.118782">Advances in neurodegenerative disease diagnosis: from conventional techniques to soft nanomaterial-enabled electrochemical neural implants</a></h4>
+        <div class="pub-authors">D. Thirumalai, H. Son, D. Y. Kim, S. Choi, <b>J. Kang*</b>, H.-R. Lim*</div>
+        <div class="pub-doi">TrAC Trends in Analytical Chemistry <b>198</b>, 118782 (2026)</div>
+      </div>
+      <span class="pub-venue">TrAC Trends<br>Anal. Chem.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2025 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2025</span>
+      <span class="year-count">01 article</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">02</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1111/febs.70115">Identification of CO-binding modes in the Cu<sub>B</sub> site of bovine cytochrome c oxidase by spatial mapping of binding energy</a></h4>
+        <div class="pub-authors"><b>J. Kang+*</b>, T. Matsuoka+, M. Tateno</div>
+        <div class="pub-doi">FEBS J. · 10.1111/febs.70115</div>
+      </div>
+      <span class="pub-venue">FEBS J.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2024 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2024</span>
+      <span class="year-count">03 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">03</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1371/journal.pcbi.1012655">Integration of Partially Observed Multimodal and Multiscale Neural Signals for Estimating a Neural Circuit Using Dynamic Causal Modeling</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Hae-Jeong Park*</div>
+        <div class="pub-doi">PLoS Comput. Biol. <b>20</b>(12): e1012655 · 10.1371/journal.pcbi.1012655</div>
+      </div>
+      <span class="pub-venue">PLoS Comp.<br>Biol.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">04</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1007/s40042-024-01013-x">A comparison between the Coleman homophily index and BA-homophily metric with a random network of unequal group sizes</a></h4>
+        <div class="pub-authors">Eun Lee*, <b>Jiyoung Kang*</b></div>
+        <div class="pub-doi">J. Korean Phys. Soc. · 10.1007/s40042-024-01013-x</div>
+      </div>
+      <span class="pub-venue">J. Kor.<br>Phys. Soc.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">05</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1007/s40042-024-01224-2">Ensemble-based community detection for dynamic networks</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang*</b></div>
+        <div class="pub-doi">J. Korean Phys. Soc. · 10.1007/s40042-024-01224-2</div>
+      </div>
+      <span class="pub-venue">J. Kor.<br>Phys. Soc.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2023 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2023</span>
+      <span class="year-count">02 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">06</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1016/j.neuroimage.2023.120161">Neuropharmacological computational analysis of longitudinal electroencephalograms in clozapine-treated patients with schizophrenia using hierarchical dynamic causal modeling</a></h4>
+        <div class="pub-authors">Jinseok Eo+, <b>Jiyoung Kang+</b>, Tak Youn, Hae-Jeong Park*</div>
+        <div class="pub-doi">NeuroImage (2023) · 10.1016/j.neuroimage.2023.120161</div>
+      </div>
+      <span class="pub-venue">NeuroImage</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">07</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1007/s40042-023-00903-w">A Comprehensive Evaluation of Entropy-Based Directionality Estimation Method</a></h4>
+        <div class="pub-authors">Donghyeok Kim+, Eun Lee+, <b>Jiyoung Kang+*</b></div>
+        <div class="pub-doi">J. Korean Phys. Soc. · 10.1007/s40042-023-00903-w</div>
+      </div>
+      <span class="pub-venue">J. Kor.<br>Phys. Soc.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2021 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2021</span>
+      <span class="year-count">06 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">08</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.3389/fncir.2021.719364">State-dependent effective connectivity in resting-state fMRI</a></h4>
+        <div class="pub-authors">Hae-Jeong Park*+, Jinseok Eo+, Chongwon Pae, Junho Son, Sung Min Park, <b>Jiyoung Kang*</b></div>
+        <div class="pub-doi">Front. Neural Circuits (2021) · 10.3389/fncir.2021.719364</div>
+      </div>
+      <span class="pub-venue">Front.<br>Neural Circ.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">09</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1016/j.neuroimage.2021.118618">Empirical Bayes estimation of pairwise maximum entropy model for nonlinear brain state dynamics</a></h4>
+        <div class="pub-authors">Seok-Oh Jeong, <b>Jiyoung Kang</b>, Chongwon Pae, Jinseok Eo, Sung Min Park, Junho Son, Hae-Jeong Park</div>
+        <div class="pub-doi">NeuroImage <b>244</b>, 118618 (2021) · 10.1016/j.neuroimage.2021.118618</div>
+      </div>
+      <span class="pub-venue">NeuroImage</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">10</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1002/hbm.25442">Bayesian estimation of maximum entropy model for individualized energy landscape analysis of brain state dynamics</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang+</b>, Seok-Oh Jeong+, Chongwon Pae, Hae-Jeong Park+*</div>
+        <div class="pub-doi">Hum. Brain Mapp. (2021) · 10.1002/hbm.25442</div>
+      </div>
+      <span class="pub-venue">Hum. Brain<br>Mapp.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">11</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.3389/fncom.2021.590019">A computational framework for controlling the self-restorative brain based on the free energy and degeneracy principles</a></h4>
+        <div class="pub-authors">Hae-Jeong Park+*, <b>Jiyoung Kang+*</b></div>
+        <div class="pub-doi">Front. Comput. Neurosci. <b>15</b>, 590019 (2021)</div>
+      </div>
+      <span class="pub-venue">Front.<br>Comp. Neuro.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">12</span>
+      <div>
+        <h4 class="pub-title"><a href="#">A computational framework for optimal control of a self-adjustive neural system with activity-dependent and homeostatic plasticity</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang+</b>, Jinseok Eo, Dong Myeong Lee, Hae-Jeong Park+</div>
+        <div class="pub-doi">NeuroImage <b>230</b>, 117805 (2021)</div>
+      </div>
+      <span class="pub-venue">NeuroImage</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">13</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.90.034804">Theoretical Analysis of the Dynamical Effects of the Amino Acid Residue Replacement in the Vicinity of the [4Fe-4S] Proximal Cluster on the O<sub>2</sub>-Tolerance of the [NiFe]-Hydrogenases</a></h4>
+        <div class="pub-authors">Ryu-ichiro Terada, <b>Jiyoung Kang</b>, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>90</b>, 034804 (2021)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2020 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2020</span>
+      <span class="year-count">02 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">14</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1016/j.neuroimage.2020.116755">Dynamic causal modeling of hippocampal activity measured via mesoscopic voltage-sensitive dye imaging</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Kyesam Jung, Jinseok Eo, Junho Son, Hae-Jeong Park</div>
+        <div class="pub-doi">NeuroImage <b>213</b>, 116755 (2020)</div>
+      </div>
+      <span class="pub-venue">NeuroImage</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">15</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1038/s41598-020-75004-w">Topoisomerase II targets DNA crossovers formed between distant homologous sites to induce chromatin opening</a></h4>
+        <div class="pub-authors">Mary Miyaji, Ryohei Furuta, Osamu Hosoya, Kuniaki Sano, Norikazu Hara, Ryozo Kuwano, <b>Jiyoung Kang</b>, Masaru Tateno, Kimiko M. Tsutsui, Ken Tsutsui</div>
+        <div class="pub-doi">Sci. Rep. <b>10</b>, 18550 (2020)</div>
+      </div>
+      <span class="pub-venue">Sci. Rep.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2019 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2019</span>
+      <span class="year-count">06 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">16</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1371/journal.pone.0222161">Graph-theoretical analysis for energy landscape reveals the organization of state transitions in the resting-state human cerebral cortex<span class="badge badge-editors">Editor's pick</span></a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Chongwon Pae, Hae-Jeong Park</div>
+        <div class="pub-doi">PLoS One <b>14</b>, e0222161 (2019) · PLOS Complexity Channel editors' pick</div>
+      </div>
+      <span class="pub-venue">PLoS One</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">17</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1016/j.neuroimage.2019.116008">Dynamic causal modeling for calcium imaging: Exploration of differential effective connectivity for sensory processing in a barrel cortical column</a></h4>
+        <div class="pub-authors">Kyesam Jung+, <b>Jiyoung Kang+</b>, Seungsoo Chung, Hae-Jeong Park</div>
+        <div class="pub-doi">NeuroImage <b>201</b>, 116008 (2019)</div>
+      </div>
+      <span class="pub-venue">NeuroImage</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">18</span>
+      <div>
+        <h4 class="pub-title"><a href="#">Structural basis for specific recognition of core fucosylation in N-glycans by <em>Pholiota squarrosa</em> lectin (PhoSL)</a></h4>
+        <div class="pub-authors">Kazuhiko Yamasaki, Tomomi Kubota, Tomoko Yamasaki, Izuru Nagashima, Hiroki Shimizu, Ryu-ichiro Terada, Hiroshi Nishigami, <b>Jiyoung Kang</b>, Masaru Tateno, Hiroaki Tateno</div>
+        <div class="pub-doi">Glycobiology <b>29</b>, 576–587 (2019)</div>
+      </div>
+      <span class="pub-venue">Glycobiology</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">19</span>
+      <div>
+        <h4 class="pub-title"><a href="#">Is it possible for short peptide composed of positively- and negatively-charged hydrophilic amino acid residue-clusters to form metastable hydrophobic packing?<span class="badge badge-cover">Cover image</span></a></h4>
+        <div class="pub-authors">Hiroshi Nishigami, <b>Jiyoung Kang</b>, Ryu-ichiro Terada, Hiori Kino, Kazuhiko Yamasaki, Masaru Tateno</div>
+        <div class="pub-doi">Phys. Chem. Chem. Phys. <b>21</b>, 9683–9693 (2019)</div>
+      </div>
+      <span class="pub-venue">PCCP</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">20</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.88.044801">Specific Coordination Mode and Electrostatic Ion Atmosphere Effects of Divalent Cations Regulating Spatially Crossing Configurations of DNA Duplexes</a></h4>
+        <div class="pub-authors">Hiroshi Nishigami, <b>Jiyoung Kang</b>, Kazuhiko Yamasaki, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>88</b>, 044801 (2019)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">21</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.88.084802">Novel Mechanism of Cl<sup>−</sup>-Dependent Proton Dislocation in Photosystem II (PSII): Hybrid Ab initio Quantum Mechanics/Molecular Mechanics Molecular Dynamics Simulation</a></h4>
+        <div class="pub-authors">Atsushi Nakamura, <b>Jiyoung Kang</b>, Ryu-ichiro Terada, Hiori Kino, Yasufumi Umena, Keisuke Kawakami, Jian-Ren Shen, Nobuo Kamiya, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>88</b>, 084802 (2019)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2018 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2018</span>
+      <span class="year-count">02 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">22</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1039/C8CC06557H">Redox-dependent conformational changes of a proximal [4Fe4S] cluster in Hyb-type [NiFe]-hydrogenase to protect the active site from O<sub>2</sub></a></h4>
+        <div class="pub-authors">Noor Dina Muhd Noor, Hiroaki Matsuura, Koji Nishikawa, Hulin Tai, Shun Hirota, Jaehyun Kim, <b>Jiyoung Kang</b>, Masaru Tateno, Ki-Seok Yoon, Seiji Ogo, Shintaro Kubota, Yasuhito Shomura, Yoshiki Higuchi</div>
+        <div class="pub-doi">Chem. Commun. <b>54</b>, 12385–12388 (2018)</div>
+      </div>
+      <span class="pub-venue">Chem.<br>Commun.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">23</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.87.124801">Possible Transition from Hybrid Ribozyme/Protein Catalyst toward Protein Enzyme to Compensate for Defective Catalytic Activator</a></h4>
+        <div class="pub-authors">Kakeru Sakabe, <b>Jiyoung Kang</b>, Ryu-ichiro Terada, Hiroshi Nishigami, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>87</b>, 124801 (2018)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2017 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2017</span>
+      <span class="year-count">06 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">24</span>
+      <div>
+        <h4 class="pub-title"><a href="#">Ab Initio Electronic Structure Calculation of [4Fe-3S] Cluster of Hydrogenase as Dihydrogen Dissociation/Production Catalyst</a></h4>
+        <div class="pub-authors">Jaehyun Kim, <b>Jiyoung Kang</b>, Hiroshi Nishigami, Hiori Kino, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>87</b>, 034804 (2018)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">25</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1016/j.neuroimage.2017.01.075">Energy landscape analysis of the subcortical brain network unravels system properties beneath resting state dynamics<span class="badge badge-cover">Cover image</span></a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Chongwon Pae, Hae-Jeong Park</div>
+        <div class="pub-doi">NeuroImage <b>149</b>, 153–164 (2017)</div>
+      </div>
+      <span class="pub-venue">NeuroImage</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">26</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.86.014802">Simulated Annealing-Extended Sampling for Multicomponent Decomposition of Spectral Data of DNA Complexed with Peptide<span class="badge badge-editors">Editor's pick</span></a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Kazuhiko Yamasaki, Kuniaki Sano, Ken Tsutsui, Kimiko M. Tsutsui, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>86</b>, 014802 (2017) · Biomedical Advances editors' pick</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">27</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.86.074802">Effects of a positive feedback loop upon the stability of bi-connected elementary biochemical reaction cycles</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>86</b>, 074802 (2017)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">28</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.86.044801">Electronic Structure Rearrangements in Hybrid Ribozyme/Protein Catalysis</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Hiori Kino, Martin J. Field, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>86</b>, 044801 (2017)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">29</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.7566/JPSJ.86.074803">Novel strategy for discrimination of transcription factor binding motifs employing mathematical neural network</a></h4>
+        <div class="pub-authors">Asuka Sugimoto, <b>Jiyoung Kang</b>, Takuya Sumi, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Soc. Jpn. <b>86</b>, 074803 (2017)</div>
+      </div>
+      <span class="pub-venue">JPSJ</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">30</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.15252/embj.201695021">Complex structure of cytochrome c–cytochrome c oxidase reveals a novel protein-protein interaction mode</a></h4>
+        <div class="pub-authors">Satoru Shimada, Kyoko Shinzawa-Itoh, Junpei Baba, Shimpei Aoe, Atsuhiro Shimada, Eiki Yamashita, <b>Jiyoung Kang</b>, Masaru Tateno, Shinya Yoshikawa, Tomitake Tsukihara</div>
+        <div class="pub-doi">EMBO J. <b>86</b>, 291–300 (2017)</div>
+      </div>
+      <span class="pub-venue">EMBO J.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2013 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2013</span>
+      <span class="year-count">02 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">31</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1074/jbc.M113.473983">Effective Pumping Proton Collection Facilitated by a Copper Site (Cu<sub>B</sub>) of Bovine Heart Cytochrome c Oxidase, Revealed by a Newly Developed Time-resolved Infrared System</a></h4>
+        <div class="pub-authors">Minoru Kubo, Satoru Nakashima, Satoru Yamaguchi, Takashi Ogura, Masao Mochizuki, <b>Jiyoung Kang</b>, Masaru Tateno, Kyoko Shinzawa-Itoh, Koji Kato, Shinya Yoshikawa</div>
+        <div class="pub-doi">J. Biol. Chem. <b>228</b>, 30259–30269 (2013)</div>
+      </div>
+      <span class="pub-venue">JBC</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">32</span>
+      <div>
+        <h4 class="pub-title"><a href="#">Molecular Dynamics Study on Binding Free Energy of Azurin–Cytochrome c<sub>551</sub> Complex</a></h4>
+        <div class="pub-authors">Hiroaki Saito, Masashi Iwayama, Taku Mizukami, <b>Jiyoung Kang</b>, Masaru Tateno, Hidemi Nagao</div>
+        <div class="pub-doi">Chem. Phys. Lett. <b>556</b>, 297–302 (2013)</div>
+      </div>
+      <span class="pub-venue">Chem. Phys.<br>Lett.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2012 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2012</span>
+      <span class="year-count">03 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">33</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1093/nar/gks519">A novel ab initio identification system of transcriptional regulation motifs in genome DNA sequences based on direct comparison scheme of signal/noise distributions</a></h4>
+        <div class="pub-authors">Ryo Nakaki, <b>Jiyoung Kang</b>, Masaru Tateno</div>
+        <div class="pub-doi">Nucleic Acids Res. <b>40</b>, 8835–8848 (2012)</div>
+      </div>
+      <span class="pub-venue">Nucleic<br>Acids Res.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">34</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1021/ct200387x">Unidirectional mechanistic valved mechanisms for ammonia transport in GatCAB</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Shigehide Kuroyanagi, Tomohiro Akisada, Yohsuke Hagiwara, Masaru Tateno</div>
+        <div class="pub-doi">J. Chem. Theory Comput. <b>8</b>, 649–660 (2012)</div>
+      </div>
+      <span class="pub-venue">JCTC</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">35</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1155/2012/236157">Biological applications of hybrid quantum mechanics / molecular mechanics calculation<span class="badge badge-review">Review</span></a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Yohsuke Hagiwara, Masaru Tateno</div>
+        <div class="pub-doi">J. Biomed. Biotechnol. <b>2012</b>, 236157 (2012)</div>
+      </div>
+      <span class="pub-venue">J. Biomed.<br>Biotechnol.</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2011 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2011</span>
+      <span class="year-count">03 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">36</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1016/j.bbabio.2011.06.019">A theoretical investigation of the functional role of the axial methionine ligand of the Cu<sub>A</sub> site in cytochrome c oxidase</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Hiori Kino, Masaru Tateno</div>
+        <div class="pub-doi">Biochim. Biophys. Acta Bioenerg. <b>1807</b>, 1314–1327 (2011)</div>
+      </div>
+      <span class="pub-venue">BBA<br>Bioenerg.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">37</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1021/ct2003948">Structural Instability of the Active Site of T1 Lipase Induced by Replacement of Na<sup>+</sup> with Water Complexed with the Phenylalanine Aromatic Ring</a></h4>
+        <div class="pub-authors">Yohsuke Hagiwara, <b>Jiyoung Kang</b>, Masaru Tateno</div>
+        <div class="pub-doi">J. Chem. Theory Comput. <b>7</b>, 2593–2599 (2011)</div>
+      </div>
+      <span class="pub-venue">JCTC</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">38</span>
+      <div>
+        <h4 class="pub-title"><a href="#">Japanese review article — Molecular-simulation approaches to biological macromolecules</a></h4>
+        <div class="pub-authors">M. Tateno, <b>J. Kang</b>, et al. (in Japanese)</div>
+        <div class="pub-doi">Kotai Butsuri (Solid State Physics) <b>80</b>(7), 610–614 (2011)</div>
+      </div>
+      <span class="pub-venue">Solid State<br>Phys. (JP)</span>
+    </article>
+  </div>
+
+  <!-- =========================== 2009 =========================== -->
+  <div class="year-block">
+    <div class="year-head">
+      <span class="year-num">2009</span>
+      <span class="year-count">02 articles</span>
+    </div>
+
+    <article class="pub">
+      <span class="pub-idx">39</span>
+      <div>
+        <h4 class="pub-title"><a href="https://doi.org/10.1088/0953-8984/21/6/064235">Electronic and geometric structures of the blue copper site of azurin investigated by QM/MM hybrid calculations</a></h4>
+        <div class="pub-authors"><b>Jiyoung Kang</b>, Takehiro Ohta, Yohsuke Hagiwara, Keigo Nishikawa, Tetsunori Yamamoto, Hidemi Nagao, Masaru Tateno</div>
+        <div class="pub-doi">J. Phys. Condens. Matter <b>21</b>, 064235 (2009)</div>
+      </div>
+      <span class="pub-venue">J. Phys.<br>Cond. Matt.</span>
+    </article>
+
+    <article class="pub">
+      <span class="pub-idx">40</span>
+      <div>
+        <h4 class="pub-title"><a href="#">A First-Principle Exploration of Heme a and Heme a<sub>3</sub> of the Bovine Cytochrome c Oxidase in Reduced and Oxidized Charge States</a></h4>
+        <div class="pub-authors">Mauro Boero, <b>Jiyoung Kang</b>, Shin Tokumoto, Masaru Tateno</div>
+        <div class="pub-doi">J. Comp. Theor. Nanosci. <b>6</b>, 2640–2647 (2009) · plus companion article by Ohta et al., <b>6</b>, 2648–2655 (2009)</div>
+      </div>
+      <span class="pub-venue">JCTN</span>
+    </article>
+  </div>
+
+</div>
+
+<!-- ================ Book chapters ================ -->
+<div class="section-divider">
+  <div class="section-eyebrow-lg">Books · 04 chapters</div>
+  <h2 class="section-title-lg">Book chapters</h2>
+  <p class="section-lead-lg">Invited chapters in edited volumes on quantum mechanics, simulated annealing, and quantum-mechanical approaches to biological macromolecules.</p>
+</div>
+
+<div class="simple-list">
+  <article class="simple-item">
+    <span class="pub-idx">B1</span>
+    <div>
+      <h4 class="simple-title">Recent Progresses in Ab Initio Electronic Structure Calculation toward Understandings of Functional Mechanisms of Biological Macromolecular Systems</h4>
+      <div class="simple-meta"><b>Jiyoung Kang</b>, Takuya Sumi, Masaru Tateno · <em>Panorama of Contemporary Quantum Mechanics — Concepts and Applications</em>, ed. T. T. Truong, IntechOpen (2019)</div>
+      <div class="simple-doi">DOI: 10.5772/intechopen.83545</div>
+    </div>
+  </article>
+
+  <article class="simple-item">
+    <span class="pub-idx">B2</span>
+    <div>
+      <h4 class="simple-title">Use of Simulated Annealing for Biophysical Analyses of Biological Macromolecular Systems</h4>
+      <div class="simple-meta"><b>Jiyoung Kang</b>, Takuya Sumi, Hiroshi Yamaguchi, Masaru Tateno · <em>Simulated Annealing; Introduction, Applications and Theory</em>, ed. A. Scollen &amp; T. Hargraves, 49–84 (2018)</div>
+      <div class="simple-doi">ISBN: 978-1-53613-674-6</div>
+    </div>
+  </article>
+
+  <article class="simple-item">
+    <span class="pub-idx">B3</span>
+    <div>
+      <h4 class="simple-title">Recent Applications of Hybrid Ab Initio Quantum Mechanics / Molecular Mechanics Simulations to Biological Macromolecules</h4>
+      <div class="simple-meta"><b>Jiyoung Kang</b>, Masaru Tateno · <em>Some Applications of Quantum Mechanics</em>, ed. M. R. Pahlavani (2012)</div>
+      <div class="simple-doi">DOI: 10.5772/35092 · ISBN: 978-953-51-0059-1</div>
+    </div>
+  </article>
+
+  <article class="simple-item">
+    <span class="pub-idx">B4</span>
+    <div>
+      <h4 class="simple-title">Japanese book chapter — Molecular simulation of biological macromolecules (III: Quantum mechanics / molecular mechanics)</h4>
+      <div class="simple-meta">M. Tateno, <b>J. Kang</b>, et al. · <em>Japanese book series</em>, Vol. 3, Chap. 8 (2011)</div>
+      <div class="simple-doi">In Japanese</div>
+    </div>
+  </article>
+</div>
+
+<!-- ================ Patents ================ -->
+<div class="section-divider">
+  <div class="section-eyebrow-lg">Patents · 02</div>
+  <h2 class="section-title-lg">Patents</h2>
+  <p class="section-lead-lg">Korean patent applications arising from BTG's computational-modeling work on brain dynamics and network analysis.</p>
+</div>
+
+<div class="simple-list" style="padding-bottom: 96px;">
+  <article class="simple-item">
+    <span class="pub-idx">P1</span>
+    <div>
+      <h4 class="simple-title">Method and apparatus for individualized energy-landscape analysis of brain state dynamics (Korean patent application)</h4>
+      <div class="simple-meta">Inventors include <b>Jiyoung Kang</b> · Filed 2019-10-11 · Application no. 10-2019-0126365</div>
+      <div class="simple-doi">Republic of Korea · KIPO</div>
+    </div>
+  </article>
+
+  <article class="simple-item">
+    <span class="pub-idx">P2</span>
+    <div>
+      <h4 class="simple-title">Additional Korean patent application (details on file)</h4>
+      <div class="simple-meta">Co-inventor: <b>Jiyoung Kang</b> · Full application details available on request</div>
+      <div class="simple-doi">Republic of Korea · KIPO</div>
+    </div>
+  </article>
+</div>
+
+<script src="i18n.js?v=20260929"></script>
+</body>
+</html>

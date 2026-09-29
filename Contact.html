@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Contact — BTG @ PKNU</title>
+<link rel="icon" href="assets/btg-logo.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* Hero call-out */
+  .hire-strip { max-width: 1240px; margin: 0 auto; padding: 24px 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .hire-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--neural-magenta); text-transform: uppercase; letter-spacing: 0.14em; }
+  html[data-lang="ko"] .hire-eyebrow { font-family: var(--font-body); font-weight: 600; text-transform: none; letter-spacing: 0.04em; font-size: 12px; }
+  .hire-line { font-family: var(--font-display); font-size: 17px; color: var(--fg-1); font-weight: 500; letter-spacing: -0.005em; }
+  html[data-lang="ko"] .hire-line { font-weight: 600; }
+  .hire-cta { margin-left: auto; font-family: var(--font-body); font-size: 13px; color: var(--fg-inv); background: var(--btg-navy); padding: 10px 18px; border-radius: 6px; text-decoration: none; transition: background var(--dur-fast) var(--ease); }
+  .hire-cta:hover { background: var(--btg-navy-hover); }
+
+  /* Contact grid */
+  .contact-grid { max-width: 1240px; margin: 0 auto; padding: 56px 48px 24px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; }
+
+  .card { border: 1px solid var(--border); border-radius: 12px; padding: 32px; background: var(--paper); }
+  .card + .card { margin-top: 20px; }
+  .card-eyebrow { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 14px; }
+  html[data-lang="ko"] .card-eyebrow { font-family: var(--font-body); font-weight: 500; text-transform: none; letter-spacing: 0.04em; font-size: 11px; }
+  .card-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 18px; line-height: 1.2; color: var(--fg-1); }
+  html[data-lang="ko"] .card-title { font-weight: 700; }
+
+  /* Address list */
+  .addr-block { font-family: var(--font-body); font-size: 15px; color: var(--fg-1); line-height: 1.7; margin: 0; }
+  .addr-block .addr-label { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.14em; margin: 18px 0 4px; font-weight: 500; }
+  html[data-lang="ko"] .addr-block .addr-label { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 12px; font-weight: 600; }
+  .addr-block .addr-label:first-child { margin-top: 0; }
+  .addr-block b { font-weight: 600; color: var(--fg-1); }
+
+  .contact-list { list-style: none; padding: 0; margin: 0; }
+  .contact-row { display: grid; grid-template-columns: 90px 1fr; gap: 20px; padding: 16px 0; border-top: 1px solid var(--divider); align-items: baseline; }
+  .contact-row:first-child { border-top: none; padding-top: 4px; }
+  .contact-key { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.14em; }
+  html[data-lang="ko"] .contact-key { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 12px; font-weight: 600; }
+  .contact-val { font-family: var(--font-body); font-size: 15px; color: var(--fg-1); line-height: 1.5; }
+  .contact-val a { color: var(--btg-navy); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-fast) var(--ease); }
+  .contact-val a:hover { border-bottom-color: var(--btg-navy); }
+  .contact-note { display: block; font-size: 12px; color: var(--fg-2); margin-top: 4px; font-family: var(--font-body); }
+
+  /* Map / location — Google Maps iframe embed */
+  .map-card { padding: 0; overflow: hidden; }
+  .map-frame { position: relative; height: 340px; border-bottom: 1px solid var(--border); overflow: hidden; background: oklch(96% 0.01 250); }
+  .map-frame iframe { width: 100%; height: 100%; border: 0; display: block;
+    /* Warm-cool duotone: mute Google's saturated palette to match BTG's editorial tone */
+    filter: grayscale(0.35) contrast(0.95) saturate(0.85);
+    transition: filter var(--dur) var(--ease);
+  }
+  .map-frame:hover iframe { filter: grayscale(0) contrast(1) saturate(1); }
+  .map-legend {
+    position: absolute; top: 12px; left: 12px;
+    font-family: var(--font-mono); font-size: 10px; color: var(--fg-2);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    background: oklch(98% 0.005 90 / 0.92); backdrop-filter: blur(6px);
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px;
+    pointer-events: none;
+  }
+  html[data-lang="ko"] .map-legend { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 12px; font-weight: 500; }
+  .map-legend b { color: var(--fg-1); font-weight: 600; }
+
+  .map-details { padding: 24px 32px 28px; }
+  .map-details h5 { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 10px; font-weight: 500; }
+  html[data-lang="ko"] .map-details h5 { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 12px; font-weight: 600; }
+  .map-details p { font-family: var(--font-body); font-size: 14px; color: var(--fg-1); margin: 0; line-height: 1.6; }
+  .map-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--btg-navy); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+  html[data-lang="ko"] .map-link { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 13px; }
+  .map-link:hover { text-decoration: underline; }
+
+  /* Directions call-out */
+  .dir-card { margin-top: 20px; }
+  .dir-item { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--divider); align-items: baseline; }
+  .dir-item:first-child { border-top: none; padding-top: 6px; }
+  .dir-marker { font-family: var(--font-mono); font-size: 12px; color: var(--fg-3); }
+  html[data-lang="ko"] .dir-marker { font-family: var(--font-body); font-size: 13px; }
+  .dir-body { font-family: var(--font-body); font-size: 14px; color: var(--fg-1); line-height: 1.55; }
+  .dir-body b { font-weight: 600; }
+</style>
+</head>
+<body data-screen-label="06 Contact">
+
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="assets/btg-logo.png" class="brand-logo" alt="BTG logo">
+    <div>
+      <div class="brand-txt-1">BTG</div>
+      <div class="brand-txt-2" data-en="Brain Theory Group · PKNU" data-ko="뇌 이론 연구실 · 부경대">Brain Theory Group · PKNU</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-en="Home" data-ko="홈">Home</a>
+      <a href="Research.html" data-en="Research" data-ko="연구">Research</a>
+      <a href="Publications.html" data-en="Publications" data-ko="논문">Publications</a>
+      <a href="People.html" data-en="People" data-ko="구성원">People</a>
+      <a href="Teaching.html" data-en="Teaching" data-ko="강의">Teaching</a>
+      <a href="Contact.html" class="active" data-en="Contact" data-ko="연락처">Contact</a>
+    </div>
+    <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+      <span data-chip="en">EN</span>
+      <span data-chip="ko">KO</span>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="page-eyebrow"
+       data-en="Contact · Dept. of Scientific Computing · Pukyong National University"
+       data-ko="연락처 · 과학컴퓨팅학과 · 부경대학교">Contact · Dept. of Scientific Computing · Pukyong National University</div>
+  <h1 class="page-title" data-en="Get in touch" data-ko="문의하기">Get in touch</h1>
+  <p class="page-lead"
+     data-en="Undergraduates, graduate applicants, and post-doctoral researchers are welcome. If any of our research pillars — dynamic causal modeling, energy-landscape analysis, thalamo-cortical simulation — resonate with you, please write."
+     data-ko="학부생·대학원 지원자·박사후연구원 모두 환영합니다. 동적 인과 모델링, 에너지 랜드스케이프 분석, 시상-피질 시뮬레이션 등 연구 주제 중 마음이 끌리는 것이 있다면 편하게 연락 주세요.">
+    Undergraduates, graduate applicants, and post-doctoral researchers are welcome. If any of our research pillars — dynamic causal modeling, energy-landscape analysis, thalamo-cortical simulation — resonate with you, please write.
+  </p>
+</header>
+
+<div class="hire-strip">
+  <div class="hire-eyebrow" data-en="Open positions" data-ko="모집 중">Open positions</div>
+  <div class="hire-line"
+       data-en="Undergraduate · Graduate (MS &amp; PhD) · Post-doctoral"
+       data-ko="학부생 · 대학원생 (석·박사) · 박사후연구원">Undergraduate · Graduate (MS &amp; PhD) · Post-doctoral</div>
+  <a class="hire-cta"  data-en="Write to us →" data-ko="문의 메일 보내기 →" href="#" data-email="braintheorygroup" data-email-domain="gmail.com">Write to us →</a>
+</div>
+
+<div class="contact-grid">
+
+  <!-- Left column: address & channels -->
+  <div>
+    <div class="card">
+      <div class="card-eyebrow" data-en="Mailing address" data-ko="주소">Mailing address</div>
+      <h3 class="card-title" data-en="Brain Theory Group" data-ko="뇌 이론 연구실">Brain Theory Group</h3>
+
+      <p class="addr-block"
+         data-en="<span class='addr-label'>English</span>Department of Scientific Computing<br><b>Pukyong National University</b><br>45 Yongso-ro, Nam-gu, Busan 48513<br>Republic of Korea<span class='addr-label'>한글</span>부산광역시 남구 용소로 45<br><b>부경대학교 대연캠퍼스</b><br>자연과학2관 (7호관)<br>과학컴퓨팅학과 (48513)"
+         data-ko="<span class='addr-label'>한글</span>부산광역시 남구 용소로 45<br><b>부경대학교 대연캠퍼스</b><br>자연과학2관 (7호관)<br>과학컴퓨팅학과 (48513)<span class='addr-label'>English</span>Department of Scientific Computing<br><b>Pukyong National University</b><br>45 Yongso-ro, Nam-gu, Busan 48513<br>Republic of Korea">
+        <span class="addr-label">English</span>Department of Scientific Computing<br><b>Pukyong National University</b><br>45 Yongso-ro, Nam-gu, Busan 48513<br>Republic of Korea<span class="addr-label">한글</span>부산광역시 남구 용소로 45<br><b>부경대학교 대연캠퍼스</b><br>자연과학2관 (7호관)<br>과학컴퓨팅학과 (48513)
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow" data-en="Direct channels" data-ko="연락 채널">Direct channels</div>
+      <h3 class="card-title" data-en="Reach the lab" data-ko="연구실 연락처">Reach the lab</h3>
+
+      <ul class="contact-list">
+        <li class="contact-row">
+          <span class="contact-key" data-en="Email" data-ko="이메일">Email</span>
+          <span class="contact-val">
+            <a href="#" data-email="braintheorygroup" data-email-domain="gmail.com" data-email-show></a>
+            <span class="contact-note"
+                  data-en="Preferred for research inquiries &amp; applications."
+                  data-ko="연구 문의·지원 관련은 이메일이 가장 빠릅니다.">Preferred for research inquiries &amp; applications.</span>
+          </span>
+        </li>
+        <li class="contact-row">
+          <span class="contact-key" data-en="Phone" data-ko="전화">Phone</span>
+          <span class="contact-val">
+            <a href="tel:+82516294067">+82-51-629-4067</a>
+            <span class="contact-note"
+                  data-en="Lab office · during weekday working hours (KST)."
+                  data-ko="연구실 직통 · 평일 업무시간 (한국 시간).">Lab office · during weekday working hours (KST).</span>
+          </span>
+        </li>
+        <li class="contact-row">
+          <span class="contact-key" data-en="PI page" data-ko="지도교수">PI page</span>
+          <span class="contact-val">
+            <a href="People.html" data-en="Jiyoung Kang — Associate Professor" data-ko="강지영 — 부교수">Jiyoung Kang — Associate Professor</a>
+            <span class="contact-note"
+                  data-en="Background, CV timeline, and student roster."
+                  data-ko="약력·이력·구성원 명단을 확인할 수 있습니다.">Background, CV timeline, and student roster.</span>
+          </span>
+        </li>
+        <li class="contact-row">
+          <span class="contact-key" data-en="Dept." data-ko="학과">Dept.</span>
+          <span class="contact-val">
+            <a href="https://scicomp.pknu.ac.kr" target="_blank" rel="noopener"
+               data-en="scicomp.pknu.ac.kr" data-ko="scicomp.pknu.ac.kr">scicomp.pknu.ac.kr</a>
+            <span class="contact-note"
+                  data-en="Department of Scientific Computing, PKNU."
+                  data-ko="부경대학교 과학컴퓨팅학과 공식 홈페이지.">Department of Scientific Computing, PKNU.</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Right column: map + directions -->
+  <div>
+    <div class="card map-card">
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=Pukyong+National+University,+45+Yongso-ro,+Nam-gu,+Busan,+South+Korea&hl=en&z=16&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          title="Pukyong National University · Daeyeon Campus"></iframe>
+        <div class="map-legend"
+             data-en="<b>Pukyong Nat'l University</b> · Daeyeon Campus"
+             data-ko="<b>부경대학교</b> · 대연캠퍼스">
+          <b>Pukyong Nat'l University</b> · Daeyeon Campus
+        </div>
+      </div>
+      <div class="map-details">
+        <h5 data-en="Getting here" data-ko="찾아오시는 길">Getting here</h5>
+        <p data-en="Pukyong National University's Daeyeon campus sits in Nam-gu, Busan, near Suyeong Bay. The lab is on the 7th building of the Natural Sciences complex (자연과학2관, Building 2 · Room 7)."
+           data-ko="부경대학교 대연캠퍼스는 부산 남구 수영만 인근에 있습니다. 연구실은 자연과학대학 건물군 중 자연과학2관 (7호관)에 위치합니다.">
+          Pukyong National University's Daeyeon campus sits in Nam-gu, Busan, near Suyeong Bay. The lab is on the 7th building of the Natural Sciences complex (자연과학2관, Building 2 · Room 7).
+        </p>
+        <a class="map-link" href="https://maps.google.com/?q=Pukyong+National+University+45+Yongso-ro+Nam-gu+Busan" target="_blank" rel="noopener"
+           data-en="Open in Google Maps →" data-ko="구글 지도에서 열기 →">Open in Google Maps →</a>
+      </div>
+    </div>
+
+    <div class="card dir-card">
+      <div class="card-eyebrow" data-en="Nearby stations" data-ko="가까운 역">Nearby stations</div>
+      <h3 class="card-title" data-en="Public transit" data-ko="대중교통">Public transit</h3>
+
+      <div class="dir-item">
+        <span class="dir-marker">M2</span>
+        <span class="dir-body"
+              data-en="<b>Daeyeon Station</b> (Line 2, exit 3) · ~10-min walk to the campus main gate."
+              data-ko="<b>대연역</b> (2호선, 3번 출구) · 도보 약 10분, 정문 방향."><b>Daeyeon Station</b> (Line 2, exit 3) · ~10-min walk to the campus main gate.</span>
+      </div>
+      <div class="dir-item">
+        <span class="dir-marker">M2</span>
+        <span class="dir-body"
+              data-en="<b>Kyungsung Univ · Pukyong Univ Station</b> (Line 2, exit 5) · ~12-min walk to the campus east gate."
+              data-ko="<b>경성대·부경대역</b> (2호선, 5번 출구) · 도보 약 12분, 후문 방향."><b>Kyungsung Univ · Pukyong Univ Station</b> (Line 2, exit 5) · ~12-min walk to the campus east gate.</span>
+      </div>
+      <div class="dir-item">
+        <span class="dir-marker">BUS</span>
+        <span class="dir-body"
+              data-en="Multiple bus lines stop at <b>Pukyong Univ. front gate</b> (부경대 정문) — check Naver Maps or KakaoMap for real-time options."
+              data-ko="<b>부경대 정문</b> 정류장에 여러 시내버스가 정차합니다. 실시간 노선은 네이버 지도·카카오맵을 참고하세요.">Multiple bus lines stop at <b>Pukyong Univ. front gate</b> (부경대 정문) — check Naver Maps or KakaoMap for real-time options.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="foot-brand-wrap">
+        <img src="assets/btg-logo.png" class="foot-logo" alt="">
+        <div>
+          <h3 class="foot-brand">BTG</h3>
+          <div class="foot-brand-sub" data-en="Brain Theory Group · PKNU" data-ko="뇌 이론 연구실 · 부경대">Brain Theory Group · PKNU</div>
+        </div>
+      </div>
+      <p class="foot-addr"
+         data-en="Department of Scientific Computing<br>Pukyong National University<br>45 Yongso-ro, Nam-gu, Busan 48513<br>Republic of Korea"
+         data-ko="부산광역시 남구 용소로 45<br>부경대학교 자연과학대학<br>과학컴퓨팅학과 (48513)<br>대한민국">
+        Department of Scientific Computing<br>Pukyong National University<br>45 Yongso-ro, Nam-gu, Busan 48513<br>Republic of Korea
+      </p>
+    </div>
+    <div class="foot-col">
+      <h5 data-en="Contact" data-ko="연락처">Contact</h5>
+      <a href="#" data-email="braintheorygroup" data-email-domain="gmail.com" data-email-show></a>
+      <a href="tel:+82516294067">+82-51-629-4067</a>
+    </div>
+    <div class="foot-col">
+      <h5 data-en="Explore" data-ko="둘러보기">Explore</h5>
+      <a href="Research.html" data-en="Research" data-ko="연구">Research</a>
+      <a href="Publications.html" data-en="Publications" data-ko="논문">Publications</a>
+      <a href="People.html" data-en="People" data-ko="구성원">People</a>
+    </div>
+    <div class="foot-col">
+      <h5 data-en="Institutional" data-ko="소속 기관">Institutional</h5>
+      <a href="https://scicomp.pknu.ac.kr" target="_blank" data-en="Dept. Scientific Computing" data-ko="과학컴퓨팅학과">Dept. Scientific Computing</a>
+      <a href="https://www.pknu.ac.kr" target="_blank" data-en="Pukyong National University" data-ko="부경대학교">Pukyong National University</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span data-en="© 2026 Brain Theory Group · Jiyoung Kang" data-ko="© 2026 Brain Theory Group · 강지영">© 2026 Brain Theory Group · Jiyoung Kang</span>
+    <span data-en="Site v2.0 · design system 2026" data-ko="사이트 v2.0 · 디자인 시스템 2026">Site v2.0 · design system 2026</span>
+  </div>
+</footer>
+
+<script src="i18n.js?v=20260929"></script>
+</body>
+</html>
