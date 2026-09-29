@@ -37,16 +37,12 @@
   .sem-tag.study .sem-dot { background: var(--neural-magenta); }
 
   .courses { display: flex; flex-direction: column; gap: 14px; }
-  .course { display: grid; grid-template-columns: 1fr 240px; gap: 24px; padding: 16px 20px; border: 1px solid var(--border); border-radius: 8px; align-items: baseline; transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease); background: var(--paper); }
+  .course { display: grid; padding: 16px 20px; border: 1px solid var(--border); border-radius: 8px; transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease); background: var(--paper); }
   .course:hover { border-color: var(--btg-navy); background: var(--paper-2); }
 
   .course-name { font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -0.005em; line-height: 1.35; margin: 0; color: var(--fg-1); }
   html[data-lang="ko"] .course-name { font-weight: 700; }
 
-  .course-audience { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); text-transform: uppercase; letter-spacing: 0.06em; text-align: right; line-height: 1.5; }
-  html[data-lang="ko"] .course-audience { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 13px; color: var(--fg-2); }
-  .course-audience .aud-label { display: block; font-size: 9px; color: var(--fg-3); letter-spacing: 0.14em; margin-bottom: 4px; }
-  html[data-lang="ko"] .course-audience .aud-label { font-size: 11px; letter-spacing: 0.02em; color: var(--fg-3); }
 
   .course-tag { display: inline-block; font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 6px; margin-left: 8px; border-radius: 2px; background: oklch(58% 0.22 340 / 0.12); color: var(--neural-magenta); border: 1px solid oklch(58% 0.22 340 / 0.35); vertical-align: 2px; }
   html[data-lang="ko"] .course-tag { font-family: var(--font-body); text-transform: none; letter-spacing: 0.02em; font-size: 10px; }
@@ -126,24 +122,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Science II" data-ko="계산과학 II">Computational Science II</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing" data-ko="과학컴퓨팅학과">Sci. Computing</span>
-          </div>
         </div>
         <div class="course">
-          <h4 class="course-name" data-en="Modern Physics II" data-ko="현대물리학 II">Modern Physics II<span class="course-tag tag-dept" data-en="Physics" data-ko="물리학과">Physics</span></h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Physics dept." data-ko="물리학과 개설">Physics dept.</span>
-          </div>
+          <h4 class="course-name" data-en="Modern Physics II" data-ko="현대물리학 II">Modern Physics II</h4>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Special Topics in Computational Science II" data-ko="계산과학주제연구 II">Special Topics in Computational Science II</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing" data-ko="과학컴퓨팅학과">Sci. Computing</span>
-          </div>
         </div>
       </div>
     </div>
@@ -153,24 +137,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Science I" data-ko="계산과학 I">Computational Science I</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing" data-ko="과학컴퓨팅학과">Sci. Computing</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Machine Learning" data-ko="기계학습">Machine Learning</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing" data-ko="과학컴퓨팅학과">Sci. Computing</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Special Topics in Computational Science I" data-ko="계산과학주제연구 I">Special Topics in Computational Science I</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing" data-ko="과학컴퓨팅학과">Sci. Computing</span>
-          </div>
         </div>
       </div>
     </div>
@@ -189,24 +161,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Science II" data-ko="계산과학 II">Computational Science II</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y2" data-ko="과학컴퓨팅학과 · 학부 2학년">Sci. Computing · undergrad Y2</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Neuroscience" data-ko="계산신경과학">Computational Neuroscience</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y3" data-ko="과학컴퓨팅학과 · 학부 3학년">Sci. Computing · undergrad Y3</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Brain Science" data-ko="계산뇌과학">Computational Brain Science</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · Y4 – Grad" data-ko="과학컴퓨팅학과 · 학부 4학년 – 대학원">Sci. Computing · Y4 – Grad</span>
-          </div>
         </div>
       </div>
     </div>
@@ -216,24 +176,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Science I" data-ko="계산과학 I">Computational Science I</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y2" data-ko="과학컴퓨팅학과 · 학부 2학년">Sci. Computing · undergrad Y2</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Data Analysis &amp; Lab" data-ko="데이터분석 및 실습">Data Analysis &amp; Lab</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Applied Math · undergrad Y3" data-ko="응용수학과 · 학부 3학년">Applied Math · undergrad Y3</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Machine Learning" data-ko="기계학습">Machine Learning</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y3" data-ko="과학컴퓨팅학과 · 학부 3학년">Sci. Computing · undergrad Y3</span>
-          </div>
         </div>
       </div>
     </div>
@@ -243,10 +191,6 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Brain Science — Study Group" data-ko="계산뇌과학 스터디">Computational Brain Science — Study Group<span class="course-tag" data-en="Zoom" data-ko="줌">Zoom</span></h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Grads &amp; undergrads · anyone interested" data-ko="관심있는 대학원생·학부생 누구나">Grads &amp; undergrads · anyone interested</span>
-          </div>
         </div>
       </div>
     </div>
@@ -265,31 +209,15 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Machine Learning" data-ko="기계학습">Machine Learning</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Graduate" data-ko="대학원">Graduate</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Science II" data-ko="계산과학 II">Computational Science II</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y2" data-ko="과학컴퓨팅학과 · 학부 2학년">Sci. Computing · undergrad Y2</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Brain Science" data-ko="계산뇌과학">Computational Brain Science</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y3" data-ko="과학컴퓨팅학과 · 학부 3학년">Sci. Computing · undergrad Y3</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Brain Science — Study Group" data-ko="계산뇌과학 스터디">Computational Brain Science — Study Group<span class="course-tag" data-en="Zoom" data-ko="줌">Zoom</span></h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Anyone interested" data-ko="관심있는 누구나">Anyone interested</span>
-          </div>
         </div>
       </div>
     </div>
@@ -299,24 +227,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Science I" data-ko="계산과학 I">Computational Science I</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y2" data-ko="과학컴퓨팅학과 · 학부 2학년">Sci. Computing · undergrad Y2</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Data Analysis with Python" data-ko="파이썬을 활용한 데이터분석">Data Analysis with Python</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Applied Math · undergrad Y3" data-ko="응용수학과 · 학부 3학년">Applied Math · undergrad Y3</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Machine Learning" data-ko="기계학습">Machine Learning</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y3" data-ko="과학컴퓨팅학과 · 학부 3학년">Sci. Computing · undergrad Y3</span>
-          </div>
         </div>
       </div>
     </div>
@@ -335,17 +251,9 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Brain Science" data-ko="계산뇌과학">Computational Brain Science</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Graduate" data-ko="대학원">Graduate</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Thinking" data-ko="컴퓨팅사고">Computational Thinking</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y1 · sections 101–102, 109" data-ko="학부 1학년 · 101–102, 109분반">Undergrad Y1 · sections 101–102, 109</span>
-          </div>
         </div>
       </div>
     </div>
@@ -355,24 +263,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Science I" data-ko="계산과학 I">Computational Science I</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y2" data-ko="과학컴퓨팅학과 · 학부 2학년">Sci. Computing · undergrad Y2</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Data Analysis with Python" data-ko="파이썬을 활용한 데이터분석">Data Analysis with Python</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Applied Math · undergrad Y3" data-ko="응용수학과 · 학부 3학년">Applied Math · undergrad Y3</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Thinking" data-ko="컴퓨팅사고">Computational Thinking</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y1" data-ko="학부 1학년">Undergrad Y1</span>
-          </div>
         </div>
       </div>
     </div>
@@ -391,10 +287,6 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Undergraduate Deep Learning Seminar" data-ko="학부생 딥러닝 세미나">Undergraduate Deep Learning Seminar</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Interested undergrads" data-ko="관심있는 학부생">Interested undergrads</span>
-          </div>
         </div>
       </div>
     </div>
@@ -404,17 +296,9 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Computational Thinking" data-ko="컴퓨팅사고">Computational Thinking</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y1 · sections 104–106" data-ko="학부 1학년 · 104–106분반">Undergrad Y1 · sections 104–106</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Graduate Quantum Mechanics I" data-ko="대학원 양자역학 I">Graduate Quantum Mechanics I<span class="course-tag tag-dept" data-en="Physics" data-ko="물리학과">Physics</span></h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y4 – Grad Y1" data-ko="학부 4학년 – 대학원 1학년">Undergrad Y4 – Grad Y1</span>
-          </div>
         </div>
       </div>
     </div>
@@ -424,24 +308,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Biology I" data-ko="생물학 I">Biology I</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Sci. Computing · undergrad Y1" data-ko="과학컴퓨팅학과 · 학부 1학년">Sci. Computing · undergrad Y1</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Computational Thinking" data-ko="컴퓨팅사고">Computational Thinking</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y1 · sections 103, 104" data-ko="학부 1학년 · 103, 104분반">Undergrad Y1 · sections 103, 104</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Reflective Thinking &amp; Writing (Natural Science)" data-ko="사유와 글쓰기 (자연과학)">Reflective Thinking &amp; Writing (Natural Science)</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y1" data-ko="학부 1학년">Undergrad Y1</span>
-          </div>
         </div>
       </div>
     </div>
@@ -460,10 +332,6 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="Undergraduate Seminar: Graph Neural Networks" data-ko="학부생 세미나: Graph Neural Network">Undergraduate Seminar: Graph Neural Networks</h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Interested undergrads" data-ko="관심있는 학부생">Interested undergrads</span>
-          </div>
         </div>
       </div>
     </div>
@@ -473,24 +341,12 @@
       <div class="courses">
         <div class="course">
           <h4 class="course-name" data-en="General Physics II" data-ko="일반물리학 II">General Physics II<span class="course-tag tag-dept" data-en="Physics" data-ko="물리학과">Physics</span></h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y1" data-ko="학부 1학년">Undergrad Y1</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Thermal &amp; Statistical Mechanics" data-ko="열 및 통계역학">Thermal &amp; Statistical Mechanics<span class="course-tag tag-dept" data-en="Physics" data-ko="물리학과">Physics</span></h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y3 – Y4" data-ko="학부 3 – 4학년">Undergrad Y3 – Y4</span>
-          </div>
         </div>
         <div class="course">
           <h4 class="course-name" data-en="Graduate Quantum Mechanics I" data-ko="대학원 양자역학 I">Graduate Quantum Mechanics I<span class="course-tag tag-dept" data-en="Physics" data-ko="물리학과">Physics</span></h4>
-          <div class="course-audience">
-            <span class="aud-label" data-en="Audience" data-ko="대상">Audience</span>
-            <span data-en="Undergrad Y4 – Grad Y1" data-ko="학부 4학년 – 대학원 1학년">Undergrad Y4 – Grad Y1</span>
-          </div>
         </div>
       </div>
     </div>
